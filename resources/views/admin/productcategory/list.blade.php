@@ -130,8 +130,6 @@
                 }
             });
         }
-
-        
     }
 </script>
 @endsection

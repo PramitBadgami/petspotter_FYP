@@ -11,6 +11,7 @@ use App\Models\ProductImage;
 use Illuminate\Http\Request;
 use App\Models\TempProductImage;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\File;
 use Intervention\Image\ImageManager;
 use Intervention\Image\Drivers\Gd\Driver;
 
@@ -139,20 +140,23 @@ class ProductController extends Controller
         $product = Product::find($id);
 
         if(empty($product)) {
-            //$request->session()->flash('error','Product not found');
-            
+
             return redirect()->route('products.index')->with('error','Product not found');
         }
+
+        // Fetch Product Images
+        $productImages = ProductImage::where('product_id',$product->id)->get();
 
         $subCategories = SubCategory::where('category_id',$product->category_id)->get();
 
         $data = [];
-        $data['product'] = $product;
-        $data['subCategories'] = $subCategories;
         $categories = ProductCategory::orderBy('name','ASC')->get();
         $brands = Brand::orderBy('name','ASC')->get();
         $data['categories'] = $categories;
         $data['brands'] = $brands;
+        $data['product'] = $product;
+        $data['subCategories'] = $subCategories;
+        $data['productImages'] = $productImages;
         return view('admin.products.edit',$data);
     }
 
@@ -214,6 +218,42 @@ class ProductController extends Controller
                 'errors' => $validator->errors()
             ]);
         }
+    }
+
+
+    public function destroy($id, Request $request) {
+        $product = Product::find($id);
+
+        if (empty($product)) {
+            $request->session()->flash('error','Product not Found');
+
+            return response()->json([
+                'status' => false,
+                'notFound' => true
+            ]);
+        }
+
+        $productImages = ProductImage::where('product_id',$id)->get();
+
+        if (!empty($productImages)) {
+            foreach ($productImages as $productImage) {
+                File::delete(public_path('uploads/product/large/'.$productImage->image));
+                File::delete(public_path('uploads/product/small/'.$productImage->image));
+            }
+                
+            ProductImage::where('product_id',$id)->delete();
+        }
+
+        $product->delete();
+
+        $request->session()->flash('success','Product deleted successfully');
+        
+        return response()->json([
+            'status' => true,
+            'message' => 'Product deleted successfully'
+        ]);
+        
+
     }
 
 }

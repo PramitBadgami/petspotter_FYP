@@ -70,7 +70,12 @@
 									<p>Products</p>
 								</a>
 							</li>
-							
+							<li class="nav-item">
+								<a href="{{route('products.index')}}" class="nav-link">
+									<i class="fas fa-dog"></i>
+									<p style="margin-left: 14px;">Pets</p>
+								</a>
+							</li>
 							<li class="nav-item">
 								<a href="#" class="nav-link">
 									<!-- <i class="nav-icon fas fa-tag"></i> -->
