@@ -35,7 +35,7 @@ class ProductImageController extends Controller
         $destPath = public_path().'/uploads/product/large/'.$imageName;
         $manager = new ImageManager(Driver::class);
         $image = $manager->read($sourcePath);
-        $image->pad(1400, 1200, 'ccc');
+        $image->scale(1400,1200);
         $image->save($destPath);
 
         //Small Image

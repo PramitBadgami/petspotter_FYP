@@ -20,7 +20,6 @@ class FrontController extends Controller
                     ->take(8)
                     ->get();
         $data['latestproducts']= $latestproducts;
-
         return view('frontend.home',$data);
     }
 }

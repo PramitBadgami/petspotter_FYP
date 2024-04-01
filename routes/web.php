@@ -13,6 +13,7 @@ use App\Http\Controllers\admin\ProductController;
 use App\Http\Controllers\admin\ProductSubCategoryController;
 use App\Http\Controllers\admin\ProductImageController;
 use App\Http\Controllers\FrontController;
+use App\Http\Controllers\ShopController;
 
 
 use Illuminate\Http\Request;
@@ -32,7 +33,9 @@ use Illuminate\Http\Request;
 //     return view('welcome');
 // });
 
-Route::get('/',[FrontController::class,'index'])->name('frontend.name');
+Route::get('/',[FrontController::class,'index'])->name('frontend.home');
+Route::get('/shop/{categorySlug?}/{subCategorySlug?}',[ShopController::class,'index'])->name('frontend.shop');
+Route::get('/product/{slug}',[ShopController::class,'product'])->name('frontend.product');
 
 Route::group(['prefix'=>'admin'],function(){
 
