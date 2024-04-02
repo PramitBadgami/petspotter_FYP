@@ -44,6 +44,8 @@
 	<!-- Fav Icon -->
 	<link rel="shortcut icon" type="image/x-icon" href="#" />
 
+	<meta name="csrf-token" content="{{ csrf_token( )}}">
+
     <style>
         .logo{
             backgrond-color: transparent;
@@ -237,6 +239,28 @@ function myFunction() {
   } else {
     navbar.classList.remove("sticky");
   }
+}
+
+$.ajaxSetup({
+	headers: {
+		'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+	}
+});
+
+function addToCart(id) {
+	$.ajax({
+		url: '{{ route("frontend.addToCart") }}',
+		type: "POST",
+		data: {id:id},
+		dataType: 'json',
+		success: function(response) {
+			if(response.status == true) {
+				window.location.href = "{{ route('frontend.cart') }}";
+			} else {
+				alert(response.message);
+			}
+		}
+	});
 }
 </script>
 

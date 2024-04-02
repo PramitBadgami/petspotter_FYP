@@ -58,7 +58,7 @@
 
                     {!! $product->short_description !!}
                     
-                    <a href="cart.php" class="btn btn-dark"><i class="fas fa-shopping-cart"></i> &nbsp;ADD TO CART</a>
+                    <a href="javascript:void(0);" onclick="addToCart({{ $product->id }})" class="btn btn-dark"><i class="fas fa-shopping-cart"></i> &nbsp;ADD TO CART</a>
                 </div>
             </div>
 
@@ -92,110 +92,55 @@
     </div>
 </section>
 
+@if(!empty($relatedProducts))
 <section class="pt-5 section-8">
     <div class="container">
         <div class="section-title">
-            <h2>Related Products</h2>
+            <h2>Recommended Products</h2>
         </div> 
         <div class="col-md-12">
             <div id="related-products" class="carousel">
-                <div class="card product-card">
+                @foreach($relatedProducts as $relProduct)
+                @php
+                    $productImage = $relProduct->product_images->first();
+                @endphp
+                <div class="card product-card"  style="height: 430px;">
                     <div class="product-image position-relative">
-                        <a href="" class="product-img"><img class="card-img-top" src="images/product-1.jpg" alt=""></a>
+
+                        <a href="" class="product-img">
+                            @if (!empty($productImage->image))
+                            <img class="card-img-top" src="{{ asset('uploads/product/small/'.$productImage->image) }}" style="object-fit: contain; object-position: center; width: 100%; height: 260px; padding: 10px;">
+                            @else
+                            <img src="{{ asset('admin-assets/img/default-150x150.png') }}"  style="object-fit: contain; object-position: center; width: 100%; height: 260px; padding: 5px;">
+                            @endif
+                        </a>
+
                         <a class="whishlist" href="222"><i class="far fa-heart"></i></a>                            
 
                         <div class="product-action">
-                            <a class="btn btn-dark" href="#">
+                            <a class="btn btn-dark" href="javascript:void(0)" onclick="addToCart({{ $product->id }});">
                                 <i class="fa fa-shopping-cart"></i> Add To Cart
                             </a>                            
                         </div>
                     </div>                        
                     <div class="card-body text-center mt-3">
-                        <a class="h6 link" href="">Dummy Product Title</a>
+                        <a class="h6 link" href="">{{ $relProduct->title }}</a>
                         <div class="price mt-2">
-                            <span class="h5"><strong>$100</strong></span>
-                            <span class="h6 text-underline"><del>$120</del></span>
+                            <span class="h5"><strong>Rs.{{ $relProduct->price }}</strong></span>
+                            @if($relProduct->compare_price > 0)
+                            <span class="h6 text-underline"><del>Rs.{{ $relProduct->compare_price }}</del></span>
+                            @endif
                         </div>
                     </div>                        
                 </div> 
-                <div class="card product-card">
-                    <div class="product-image position-relative">
-                        <a href="" class="product-img"><img class="card-img-top" src="images/product-1.jpg" alt=""></a>
-                        <a class="whishlist" href="222"><i class="far fa-heart"></i></a>                            
-
-                        <div class="product-action">
-                            <a class="btn btn-dark" href="#">
-                                <i class="fa fa-shopping-cart"></i> Add To Cart
-                            </a>                            
-                        </div>
-                    </div>                        
-                    <div class="card-body text-center mt-3">
-                        <a class="h6 link" href="">Dummy Product Title</a>
-                        <div class="price mt-2">
-                            <span class="h5"><strong>$100</strong></span>
-                            <span class="h6 text-underline"><del>$120</del></span>
-                        </div>
-                    </div>                        
-                </div> 
-                <div class="card product-card">
-                    <div class="product-image position-relative">
-                        <a href="" class="product-img"><img class="card-img-top" src="images/product-1.jpg" alt=""></a>
-                        <a class="whishlist" href="222"><i class="far fa-heart"></i></a>                            
-
-                        <div class="product-action">
-                            <a class="btn btn-dark" href="#">
-                                <i class="fa fa-shopping-cart"></i> Add To Cart
-                            </a>                            
-                        </div>
-                    </div>                        
-                    <div class="card-body text-center mt-3">
-                        <a class="h6 link" href="">Dummy Product Title</a>
-                        <div class="price mt-2">
-                            <span class="h5"><strong>$100</strong></span>
-                            <span class="h6 text-underline"><del>$120</del></span>
-                        </div>
-                    </div>                        
-                </div> 
-                <div class="card product-card">
-                    <div class="product-image position-relative">
-                        <a href="" class="product-img"><img class="card-img-top" src="images/product-1.jpg" alt=""></a>
-                        <a class="whishlist" href="222"><i class="far fa-heart"></i></a>                            
-
-                        <div class="product-action">
-                            <a class="btn btn-dark" href="#">
-                                <i class="fa fa-shopping-cart"></i> Add To Cart
-                            </a>                            
-                        </div>
-                    </div>                        
-                    <div class="card-body text-center mt-3">
-                        <a class="h6 link" href="">Dummy Product Title</a>
-                        <div class="price mt-2">
-                            <span class="h5"><strong>$100</strong></span>
-                            <span class="h6 text-underline"><del>$120</del></span>
-                        </div>
-                    </div>                        
-                </div> 
-                <div class="card product-card">
-                    <div class="product-image position-relative">
-                        <a href="" class="product-img"><img class="card-img-top" src="images/product-1.jpg" alt=""></a>
-                        <a class="whishlist" href="222"><i class="far fa-heart"></i></a>                            
-
-                        <div class="product-action">
-                            <a class="btn btn-dark" href="#">
-                                <i class="fa fa-shopping-cart"></i> Add To Cart
-                            </a>                            
-                        </div>
-                    </div>                        
-                    <div class="card-body text-center mt-3">
-                        <a class="h6 link" href="">Dummy Product Title</a>
-                        <div class="price mt-2">
-                            <span class="h5"><strong>$100</strong></span>
-                            <span class="h6 text-underline"><del>$120</del></span>
-                        </div>
-                    </div>                        
-                </div> 
+                @endforeach
             </div>
         </div>
     </div>
 </section>
+@endif
+@endsection
+
+@section('customJs')
+
 @endsection
