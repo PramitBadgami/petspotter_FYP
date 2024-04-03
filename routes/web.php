@@ -15,6 +15,7 @@ use App\Http\Controllers\admin\ProductImageController;
 use App\Http\Controllers\FrontController;
 use App\Http\Controllers\ShopController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\AuthController;
 
 
 use Illuminate\Http\Request;
@@ -39,6 +40,24 @@ Route::get('/shop/{categorySlug?}/{subCategorySlug?}',[ShopController::class,'in
 Route::get('/product/{slug}',[ShopController::class,'product'])->name('frontend.product');
 Route::get('/cart',[CartController::class,'cart'])->name('frontend.cart');
 Route::post('/add-to-cart',[CartController::class,'addToCart'])->name('frontend.addToCart');
+Route::post('/update-cart',[CartController::class,'updateCart'])->name('frontend.updateCart');
+Route::post('/delete-item',[CartController::class,'deleteItem'])->name('frontend.deleteItem.cart');
+
+
+Route::group(['prefix'=>'account'],function(){
+    Route::group(['middleware' => 'auth'],function(){
+        Route::get('/login',[AuthController::class,'login'])->name('account.login');
+        Route::get('/register',[AuthController::class,'register'])->name('account.register');
+        Route::post('/process-register',[AuthController::class,'processRegister'])->name('account.processRegister');
+
+
+    });
+
+    Route::group(['middleware' => 'guest'],function(){
+
+
+    });
+});
 
 Route::group(['prefix'=>'admin'],function(){
 

@@ -58,7 +58,7 @@
 	<div class="container">
 		<div class="row align-items-center py-3 d-none d-lg-flex justify-content-between">
 			<div class="col-lg-4 logo">
-				<a href="#" class="text-decoration-none">
+				<a href="{{ route('frontend.home') }}" class="text-decoration-none">
 					<!-- <span class="h1 text-uppercase text-primary bg-dark px-2">Online</span>
 					<span class="h1 text-uppercase text-dark bg-primary px-2 ml-n1">SHOP</span> -->
                     <img class="logo" src="{{ asset('logo/petspotter-logo.png') }}">
@@ -82,14 +82,14 @@
 <header class="bg-dark">
 	<div class="container">
 		<nav class="navbar navbar-expand-xl" id="navbar">
-			<a href="index.php" class="text-decoration-none mobile-logo">
+			<a href="{{ route('frontend.home') }}" class="text-decoration-none mobile-logo">
 				<span class="h2 text-uppercase text-primary bg-dark">Online</span>
 				<span class="h2 text-uppercase text-white px-2">SHOP</span>
 			</a>
 			<button class="navbar-toggler menu-btn" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       			<!-- <span class="navbar-toggler-icon icon-menu"></span> -->
 				  <i class="navbar-toggler-icon fas fa-bars"></i>
-    		</button>
+			</button>
     		<div class="collapse navbar-collapse" id="navbarSupportedContent">
       			<ul class="navbar-nav me-auto mb-2 mb-lg-0">
         			<!-- <li class="nav-item">
@@ -156,7 +156,7 @@
       			</ul>      			
       		</div>   
 			<div class="right-nav py-0">
-				<a href="cart.php" class="ml-3 d-flex pt-2">
+				<a href="{{ route('frontend.cart') }}" class="ml-3 d-flex pt-2">
 					<i class="fas fa-shopping-cart text-primary"></i>					
 				</a>
 			</div> 		

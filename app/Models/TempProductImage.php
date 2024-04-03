@@ -8,4 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class TempProductImage extends Model
 {
     use HasFactory;
+
+    
 }
