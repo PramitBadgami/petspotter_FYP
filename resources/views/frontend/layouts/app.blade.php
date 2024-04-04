@@ -29,6 +29,9 @@
 	<meta name="twitter:image" content="" />
 	<meta name="twitter:image:alt" content="" />
 	<meta name="twitter:card" content="summary_large_image" />
+
+	<!-- Favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('front-assets/images/petspotter-zoomed-removebg-preview.png') }}" />
 	
 
 	<link rel="stylesheet" type="text/css" href="{{ asset('front-assets/css/slick.css') }}" />

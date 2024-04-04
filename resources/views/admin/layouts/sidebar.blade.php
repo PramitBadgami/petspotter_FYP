@@ -24,8 +24,8 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
 				<!-- Brand Logo -->
 				<a href="#" class="brand-link">
-					<img src="{{asset('logo/petspotter2.png')}}" alt="AdminLTE Logo" class="brand-image" style="opacity: .8">
-					<span class="brand-text font-weight-light">Pet Adoption</span>
+					<img src="{{asset('logo/petspotter-zoomed-removebg.png')}}" alt="AdminLTE Logo" class="brand-image" style="opacity: .8; filter: brightness(0) invert(1);">
+					<span class="brand-text font-weight-light">Pet Spotter</span>
 				</a>
 				<!-- Sidebar -->
 				<div class="sidebar">

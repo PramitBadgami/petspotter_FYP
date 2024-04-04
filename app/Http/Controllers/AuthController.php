@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 
 class AuthController extends Controller
@@ -48,5 +49,41 @@ class AuthController extends Controller
             ]);
         }
 
+    }
+
+    public function authenticate(Request $request) {
+        $validator = Validator::make($request->all(),[
+            'email' => 'required|email',
+            'password' => 'required',
+        ]);
+
+        if ($validator->passes()) {
+
+            if(Auth::attempt(['email' => $request->email, 'password' => $request->password],$request->get('remember'))) {
+
+                return redirect()->route('account.profile');
+
+            } else{ //when the email/password is invalid
+                // session()->flash('error', 'Either email or password is incorrect.');
+                return redirect()->route('account.login')
+                                ->withInput($request->only('email'))
+                                ->with('error', 'Either email or password is incorrect.');
+            }
+
+        } else {
+            return redirect()->route('account.login')
+                            ->withErrors($validator)
+                            ->withInput($request->only('email'));
+        }
+    }
+
+    public function profile() {
+        return view('frontend.account.profile');
+    }
+
+    public function logout() {
+        Auth::logout();
+        return redirect()->route('account.login')
+        ->with('success', 'You successfully logged out.');
     }
 }

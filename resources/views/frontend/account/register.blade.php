@@ -42,7 +42,7 @@
                     </div> 
                     <button type="submit" class="btn btn-dark btn-block btn-lg" value="Register">Register</button>
                 </form>			
-                <div class="text-center small">Already have an account? <a href="login.php">Login Now</a></div>
+                <div class="text-center small">Already have an account? <a href="{{ route('account.login') }}">Login Now</a></div>
             </div>
         </div>
     </section>
@@ -55,12 +55,15 @@
 $("#registrationForm").submit(function(event){
     event.preventDefault();
 
+    $("button[type='sumbit']").prop('disabled', true);
+
     $.ajax({
         url:'{{ route("account.processRegister") }}',
         type: 'post',
         data: $(this).serializeArray(),
         dataType: 'json',
         success: function(response){
+            $("button[type='sumbit']").prop('disabled', false);
 
             var errors = response.errors;
 

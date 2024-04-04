@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Response;
 use Gloudemans\Shoppingcart\Facades\Cart;
 
@@ -131,5 +132,21 @@ class CartController extends Controller
             'message' => $message
          ]);
         
+    }
+
+    public function checkout(){
+
+        // if cart is empty, redirect to cart page
+        if (Cart::count() == 0) {
+            return redirect()->route('frontend.cart');
+        }
+
+        // if cart is empty, redirect to login page
+        if (Auth::check() == false) {
+            session(['url.intended' => url()->current()]);
+            return redirect()->route('account.login');
+        }
+
+        return view('frontend.checkout');
     }
 }
