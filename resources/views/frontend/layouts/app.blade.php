@@ -93,7 +93,25 @@
       			<!-- <span class="navbar-toggler-icon icon-menu"></span> -->
 				  <i class="navbar-toggler-icon fas fa-bars"></i>
 			</button>
+			
+						
+					
     		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<button class="btn btn-dark dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+							Pet Products
+						</button>
+						<ul class="dropdown-menu dropdown-menu-dark">
+						@if(getCategories()->isNotEmpty())
+                    	@foreach (getCategories() as $category)
+							<li><a class="dropdown-item" href="#">{{ $category->name }}</a></li>
+								
+							<!-- <li><a class="dropdown-item" href="#">Jeans</a></li>
+							<li><a class="dropdown-item" href="#">Shoes</a></li>
+							<li><a class="dropdown-item" href="#">Watches</a></li>
+							<li><a class="dropdown-item" href="#">Perfumes</a></li> -->
+							@endforeach
+                    		@endif
+						</ul>
       			<ul class="navbar-nav me-auto mb-2 mb-lg-0">
         			<!-- <li class="nav-item">
           				<a class="nav-link active" aria-current="page" href="index.php" title="Products">Home</a>

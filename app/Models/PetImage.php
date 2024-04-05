@@ -5,10 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class TempProductImage extends Model
+class PetImage extends Model
 {
-    // use HasFactory;
-    protected $table = 'temp_product_images';
-
-    
+    public function pet()
+    {
+        return $this->belongsTo(Pet::class);
+    }
 }

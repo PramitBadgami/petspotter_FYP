@@ -65,13 +65,22 @@
 								</a>
 							</li>
 							<li class="nav-item">
+								<a href="{{ route('breeds.index') }}" class="nav-link">
+									<!-- <svg class="h-6 nav-icon w-6 shrink-0" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
+										<path stroke-linecap="round" stroke-linejoin="round" d="M16 4v12l-4-2-4 2V4M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+									  </svg> -->
+									  <i class="fas fa-cat"></i>
+									<p style="margin-left: 14px;">Breeds</p>
+								</a>
+							</li>
+							<li class="nav-item">
 								<a href="{{route('products.index')}}" class="nav-link">
 									<i class="nav-icon fas fa-tag"></i>
 									<p>Products</p>
 								</a>
 							</li>
 							<li class="nav-item">
-								<a href="{{route('products.index')}}" class="nav-link">
+								<a href="{{route('pets.index')}}" class="nav-link">
 									<i class="fas fa-dog"></i>
 									<p style="margin-left: 14px;">Pets</p>
 								</a>

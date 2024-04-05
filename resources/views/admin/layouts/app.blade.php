@@ -21,6 +21,8 @@
 
 		<link rel="stylesheet" href="{{asset('admin-assets/css/custom.css')}}">
         <meta name="csrf-token" content="{{ csrf_token( )}}">
+
+		<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.2/dist/chart.umd.min.js"></script>
 	</head>
 	<body class="hold-transition sidebar-mini">
 		<!-- Site wrapper -->

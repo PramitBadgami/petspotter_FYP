@@ -63,10 +63,26 @@
     <!-- /.card -->
 </section>
 <!-- /.content -->
+<br>
+<center><u style= "color: orange;"><h1>Number of Users registered per month</h1></u></center>
+
+<div stlye="width: 400px; margin: auto;">
+    <canvas id="chart"></canvas>
+</div>
+
 @endsection
 
 @section('customJs')
 <script>
     console.log("hello")
+
+    var ctx = document.getElementById('chart').getContext('2d');
+    var userChart= new Chart(ctx,{
+        type: 'bar',
+        data:{
+            labels: {!! json_encode($labels) !!},
+            datasets: {!! json_encode($datasets) !!}
+        },
+    });
 </script>
 @endsection

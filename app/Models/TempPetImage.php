@@ -7,5 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class TempPetImage extends Model
 {
-    use HasFactory;
+    // use HasFactory;
+    protected $table = 'temp_pet_images';
 }

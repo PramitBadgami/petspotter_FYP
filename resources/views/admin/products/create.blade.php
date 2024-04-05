@@ -297,6 +297,7 @@
             });
         })
 
+        
         $("#category").change(function(){
             var category_id = $(this).val();
             $.ajax({

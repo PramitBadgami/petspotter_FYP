@@ -7,6 +7,7 @@ use App\Http\Controllers\admin\ProductCategoryController;
 use App\Http\Controllers\admin\PetCategoryController;
 use App\Http\Controllers\admin\SubCategoryController;
 use App\Http\Controllers\admin\BrandController;
+use App\Http\Controllers\admin\BreedController;
 use App\Http\Controllers\admin\TempProductImagesController;
 use App\Http\Controllers\admin\TempPetImagesController;
 use App\Http\Controllers\admin\ProductController;
@@ -16,6 +17,7 @@ use App\Http\Controllers\FrontController;
 use App\Http\Controllers\ShopController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\admin\PetController;
 
 
 use Illuminate\Http\Request;
@@ -122,7 +124,7 @@ Route::group(['prefix'=>'admin'],function(){
         Route::get('/brands/{brand}/edit', [BrandController::class, 'edit'])->name('brands.edit');
         Route::put('/brands/{brand}', [BrandController::class, 'update'])->name('brands.update');
         Route::delete('/brands/{brands}', [BrandController::class, 'destroy'])->name('brands.delete');
-        
+
 
         // Products Routes
         Route::get('/products', [ProductController::class, 'index'])->name('products.index');
@@ -134,6 +136,18 @@ Route::group(['prefix'=>'admin'],function(){
         Route::delete('/products/{product}', [ProductController::class, 'destroy'])->name('products.delete');
         Route::get('/get-products',[ProductController::class,'getProducts'])->name('products.getProducts');
 
+        // Breeds Routes
+        Route::get('/breeds', [BreedController::class, 'index'])->name('breeds.index');
+        Route::get('/breeds/create', [BreedController::class, 'create'])->name('breeds.create');
+        Route::post('/breeds', [BreedController::class, 'store'])->name('breeds.store');
+        Route::get('/breeds/{breed}/edit', [BreedController::class, 'edit'])->name('breeds.edit');
+        Route::put('/breeds/{breed}', [BreedController::class, 'update'])->name('breeds.update');
+        Route::delete('/breeds/{breeds}', [BreedController::class, 'destroy'])->name('breeds.delete');
+
+        // Pet Routes
+        Route::get('/pets', [PetController::class, 'index'])->name('pets.index');
+        Route::get('/pets/create', [PetController::class, 'create'])->name('pets.create');
+        Route::post('/pets', [PetController::class, 'store'])->name('pets.store');
 
 
 
