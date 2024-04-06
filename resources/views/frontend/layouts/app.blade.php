@@ -53,6 +53,33 @@
         .logo{
             backgrond-color: transparent;
         }
+
+		.dropdown-menu.subcategories {
+			background-color: #212529; /* Change background color to #212529 */
+			margin-left: 90%;
+		}
+		
+		.category-item {
+			color: white !important;
+			
+    	}
+
+		.category-item:hover {
+			color: #F7CA0D !important;
+    	}
+
+		.dropdown-menu-dark{
+			background-color: #212529;
+			
+		}
+
+		.second-dropdown-menu{
+			margin-left: 50%;
+		}
+
+		.dropdown-menu .dropdown-item {
+			margin-bottom: 5px; /* Adjust margin as needed */
+		}
     </style>
 </head>
 <body data-instant-intensity="mousedown">
@@ -97,84 +124,78 @@
 						
 					
     		<div class="collapse navbar-collapse" id="navbarSupportedContent">
-				<button class="btn btn-dark dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+				<!-- <button class="btn btn-dark dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
 							Pet Products
 						</button>
 						<ul class="dropdown-menu dropdown-menu-dark">
-						@if(getCategories()->isNotEmpty())
-                    	@foreach (getCategories() as $category)
-							<li><a class="dropdown-item" href="#">{{ $category->name }}</a></li>
+							@if(getCategories()->isNotEmpty())
+							@foreach (getCategories() as $category)
+								<li><a class="dropdown-item" href="#">{{ $category->name }}</a></li>
+									
 								
-							<!-- <li><a class="dropdown-item" href="#">Jeans</a></li>
-							<li><a class="dropdown-item" href="#">Shoes</a></li>
-							<li><a class="dropdown-item" href="#">Watches</a></li>
-							<li><a class="dropdown-item" href="#">Perfumes</a></li> -->
 							@endforeach
                     		@endif
-						</ul>
-      			<ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        			<!-- <li class="nav-item">
-          				<a class="nav-link active" aria-current="page" href="index.php" title="Products">Home</a>
-        			</li> -->
-                    @if(getCategories()->isNotEmpty())
-                    @foreach (getCategories() as $category)
-					<li class="nav-item dropdown">
-						<button class="btn btn-dark dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                            {{ $category->name }}
-						</button>
-                        @if ($category->sub_category->isNotEmpty())
-						<ul class="dropdown-menu dropdown-menu-dark">
-                        @foreach ($category->sub_category as $subCategory)
-							<li><a class="dropdown-item nav-link" href="{{ route('frontend.shop',[$category->slug,$subCategory->slug]) }}">{{ $subCategory->name }}</a></li>
-                        @endforeach
-						</ul>
-                        @endif
-							
-					</li>
-                    @endforeach
-                    @endif
-					<!-- <li class="nav-item dropdown">
-						<button class="btn btn-dark dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-							Men's Fashion
-						</button>
-						<ul class="dropdown-menu dropdown-menu-dark">
-							<li><a class="dropdown-item" href="#">Shirts</a></li>
-							<li><a class="dropdown-item" href="#">Jeans</a></li>
-							<li><a class="dropdown-item" href="#">Shoes</a></li>
-							<li><a class="dropdown-item" href="#">Watches</a></li>
-							<li><a class="dropdown-item" href="#">Perfumes</a></li>
-						</ul>
-					</li>
-					<li class="nav-item dropdown">
-						<button class="btn btn-dark dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-							Women's Fashion
-						</button>
-						<ul class="dropdown-menu dropdown-menu-dark">
-							<li><a class="dropdown-item" href="#">T-Shirts</a></li>
-							<li><a class="dropdown-item" href="#">Tops</a></li>
-							<li><a class="dropdown-item" href="#">Jeans</a></li>
-							<li><a class="dropdown-item" href="#">Shoes</a></li>
-							<li><a class="dropdown-item" href="#">Watches</a></li>
-							<li><a class="dropdown-item" href="#">Perfumes</a></li>
-						</ul>
-					</li>
+						</ul> -->
 
-					<li class="nav-item dropdown">
-						<button class="btn btn-dark dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-							Appliances
-						</button>
-						<ul class="dropdown-menu dropdown-menu-dark">
-							<li><a class="dropdown-item" href="#">TV</a></li>
-							<li><a class="dropdown-item" href="#">Washing Machines</a></li>
-							<li><a class="dropdown-item" href="#">Air Conditioners</a></li>
-							<li><a class="dropdown-item" href="#">Vacuum Cleaner</a></li>
-							<li><a class="dropdown-item" href="#">Fans</a></li>
-							<li><a class="dropdown-item" href="#">Air Coolers</a></li>
-						</ul>
-					</li> -->
-					
-					
-      			</ul>      			
+						<!-- <button class="btn btn-dark dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">Pet Products</button>
+						<ul class="dropdown-menu dropdown-menu-dark" id="categoryDropdown">
+							@if(getCategories()->isNotEmpty())
+								@foreach (getCategories() as $category)
+									<li>
+										<a class="dropdown-item category-item" href="#" data-category-id="{{ $category->id }}">{{ $category->name }}</a>
+										<ul class="subcategories" id="subcategories_{{ $category->id }}">
+										@foreach ($category->sub_category as $subCategory)
+
+											<li><a class="dropdown-item nav-link" href="{{ route('frontend.shop',[$category->slug,$subCategory->slug]) }}">{{ $subCategory->name }}</a></li>
+										@endforeach
+
+										</ul>
+									</li>
+								@endforeach
+							@endif
+						</ul> -->
+
+						
+
+
+						<div class="dropdown" style="display: flex;">
+							<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+						
+								<li class="nav-item dropdown">
+									<button class="btn btn-dark dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+										Adopt a Pet
+									</button>
+									@if(getPetCategories()->isNotEmpty())
+									<ul class="dropdown-menu dropdown-menu-dark">
+										@foreach (getPetCategories() as $category)
+										<li><a class="dropdown-item nav-link" href="{{ route('frontend.shop',[$category->slug]) }}">{{ $category->name }}</a></li>
+										@endforeach
+									</ul>
+									@endif	
+								</li>
+							</ul>   
+
+
+							<button class="btn btn-dark dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+								Pet Products
+							</button>
+							<ul class="dropdown-menu dropdown-menu-dark second-dropdown-menu" id="categoryDropdown">
+								@if(getCategories()->isNotEmpty())
+									@foreach (getCategories() as $category)
+										<li class="dropdown-item">
+											<a href="#" class="category-item" data-category-id="{{ $category->id }}">{{ $category->name }}</a>
+											<ul class="dropdown-menu subcategories" id="subcategories_{{ $category->id }}">
+												@foreach ($category->sub_category as $subCategory)
+													<li><a class="dropdown-item nav-link" href="{{ route('frontend.shop',[$category->slug,$subCategory->slug]) }}">{{ $subCategory->name }}</a></li>
+												@endforeach
+											</ul>
+										</li>
+									@endforeach
+								@endif
+							</ul>
+						</div>
+
+      			   			
       		</div>   
 			<div class="right-nav py-0">
 				<a href="{{ route('frontend.cart') }}" class="ml-3 d-flex pt-2">
@@ -283,6 +304,83 @@ function addToCart(id) {
 		}
 	});
 }
+
+
+$(document).ready(function() {
+    $('.category-item').hover(function() {
+        var categoryId = $(this).data('category-id');
+        fetchSubcategories(categoryId);
+    });
+});
+
+function fetchSubcategories(categoryId) {
+    $.ajax({
+        url: '/get-subcategories', // Replace this with your route to fetch subcategories
+        method: 'GET',
+        data: { category_id: categoryId },
+        success: function(response) {
+            var subcategories = response.subcategories;
+            var subcategoryList = $('#subcategories_' + categoryId);
+            subcategoryList.empty(); // Clear existing subcategories
+
+            if (subcategories.length > 0) {
+                $.each(subcategories, function(index, subcategory) {
+                    subcategoryList.append('<li><a class="dropdown-item" href="#">' + subcategory.name + '</a></li>');
+                });
+            } else {
+                subcategoryList.append('<li><span class="dropdown-item disabled">No subcategories found</span></li>');
+            }
+        },
+        error: function(xhr, status, error) {
+            console.error('Error fetching subcategories:', error);
+        }
+    });
+}
+</script>
+
+<script>
+    $(document).ready(function() {
+        // Hide all subcategories initially
+        $('.subcategories').hide();
+
+        // Show subcategories when hovering over each category
+        $('.category-item').hover(function() {
+            // Hide all subcategories
+            $('.subcategories').hide();
+            
+            // Show subcategories for the hovered category
+            $(this).siblings('.subcategories').show();
+
+            // Fetch subcategories dynamically
+            var categoryId = $(this).data('category-id');
+            fetchSubcategories(categoryId);
+        });
+
+        // Function to fetch subcategories via AJAX
+        function fetchSubcategories(categoryId) {
+            $.ajax({
+                url: '/get-subcategories', // Replace this with your route to fetch subcategories
+                method: 'GET',
+                data: { category_id: categoryId },
+                success: function(response) {
+                    var subcategories = response.subcategories;
+                    var subcategoryList = $('#subcategories_' + categoryId);
+                    subcategoryList.empty(); // Clear existing subcategories
+
+                    if (subcategories.length > 0) {
+                        $.each(subcategories, function(index, subcategory) {
+                            subcategoryList.append('<li><a class="dropdown-item" href="#">' + subcategory.name + '</a></li>');
+                        });
+                    } else {
+                        subcategoryList.append('<li><span class="dropdown-item disabled">No subcategories found</span></li>');
+                    }
+                },
+                error: function(xhr, status, error) {
+                    console.error('Error fetching subcategories:', error);
+                }
+            });
+        }
+    });
 </script>
 
 @yield('customJs')

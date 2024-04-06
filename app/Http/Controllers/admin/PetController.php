@@ -119,4 +119,116 @@ class PetController extends Controller
             ]);
         }
     }
+
+    public function edit($id, Request $request) {
+        
+        $pet = Pet::find($id);
+
+        if(empty($pet)) {
+
+            return redirect()->route('pets.index')->with('error','Pet not found');
+        }
+
+
+        // Fetch Product Images
+        $petImages = PetImage::where('pet_id',$pet->id)->get();
+
+
+        $data = [];
+        $data['pet'] = $pet;
+
+        $petCategories = PetCategory::orderBy('name','ASC')->get();
+        $breeds = Breed::orderBy('breed','ASC')->get();
+        $data['petCategories'] = $petCategories;
+        // $data['pet'] = $pet;
+        $data['breeds'] = $breeds;
+        $data['petImages'] = $petImages;
+        return view('admin.pets.edit', $data);
+    }
+
+    public function update($id, Request $request) {
+
+        $pet = Pet::find($id);
+
+        $rules = [
+            'name' => 'required',
+            'slug' => 'required|unique:pets,slug,'.$pet->id.',id',
+            'age' => 'required|numeric',
+            'gender' => 'required|in:Male,Female',
+            'category' => 'required|numeric',
+            'is_featured' => 'required|in:Yes,No',
+        ];
+
+        $validator = Validator::make($request->all(),$rules);
+
+        if ($validator->passes()) {
+        
+            // dd($request->img_array);
+            // exit();
+            // $pet = new Pet;
+            $pet->name = $request->name;
+            $pet->slug = $request->slug;
+            $pet->description = $request->description;
+            $pet->age = $request->age;
+            $pet->gender = $request->gender;
+            $pet->status = $request->status;
+            $pet->category_id = $request->category;
+            $pet->breed_id = $request->breed;
+            $pet->is_featured = $request->is_featured;
+            $pet->save();
+
+            //Save Gallery Pictures
+            
+            
+
+            $request->session()->flash('success', 'Pet updated successfully');
+
+            return response()->json([
+                'status' => true,
+                'message' => 'Pet updated successfully'
+            ]);
+
+        } else {
+            return response()->json([
+                'status' => false,
+                'errors' => $validator->errors()
+            ]);
+        }
+    }
+
+    public function destroy($id, Request $request) {
+        $pet = Pet::find($id);
+
+        if (empty($pet)) {
+            $request->session()->flash('error','Pet not Found');
+
+            return response()->json([
+                'status' => false,
+                'notFound' => true
+            ]);
+        }
+
+        $petImages = PetImage::where('pet_id',$id)->get();
+
+        if (!empty($petImages)) {
+            foreach ($petImages as $petImage) {
+                File::delete(public_path('uploads/pet/large/'.$petImage->image));
+                File::delete(public_path('uploads/pet/small/'.$petImage->image));
+            }
+                
+            PetImage::where('pet_id',$id)->delete();
+        }
+
+        $pet->delete();
+
+        $request->session()->flash('success','Pet deleted successfully');
+        
+        return response()->json([
+            'status' => true,
+            'message' => 'Pet deleted successfully'
+        ]);
+        
+
+    }
+
 }

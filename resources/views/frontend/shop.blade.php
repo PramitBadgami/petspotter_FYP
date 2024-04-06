@@ -32,7 +32,7 @@
                                 @if($category->sub_category->isNotEmpty())
                                 <h2 class="accordion-header" id="headingOne">
                                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne-{{ $key }}" aria-expanded="false" aria-controls="collapseOne-{{ $key }}">
-                                        {{$category->name}} Products
+                                        {{$category->name}}
                                     </button>
                                 </h2>
                                 @else

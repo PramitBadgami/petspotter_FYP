@@ -176,7 +176,7 @@ class ProductCategoryController extends Controller
 
             return response()->json([
                 'status' => true,
-                'message' => 'Catery updated successfully'
+                'message' => 'Category updated successfully'
             ]);
 
         } else{

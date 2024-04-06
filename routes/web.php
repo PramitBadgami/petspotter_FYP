@@ -18,6 +18,7 @@ use App\Http\Controllers\ShopController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\admin\PetController;
+use App\Http\Controllers\admin\PetImageController;
 
 
 use Illuminate\Http\Request;
@@ -148,7 +149,12 @@ Route::group(['prefix'=>'admin'],function(){
         Route::get('/pets', [PetController::class, 'index'])->name('pets.index');
         Route::get('/pets/create', [PetController::class, 'create'])->name('pets.create');
         Route::post('/pets', [PetController::class, 'store'])->name('pets.store');
+        Route::get('/pets/{pet}/edit', [PetController::class, 'edit'])->name('pets.edit');
+        Route::put('/pets/{pet}', [PetController::class, 'update'])->name('pets.update');
+        Route::delete('/pets/{pet}', [PetController::class, 'destroy'])->name('pets.delete');
 
+        Route::post('/pet-images/update', [PetImageController::class, 'update'])->name('pet-images.update');
+        Route::delete('/pet-images', [PetImageController::class, 'destroy'])->name('pet-images.destroy');
 
 
         Route::get('/product-subcategories', [ProductSubCategoryController::class, 'index'])->name('product-subcategories.index');

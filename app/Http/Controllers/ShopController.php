@@ -16,8 +16,8 @@ class ShopController extends Controller
         $brandsArray = [];
 
 
-        $categories = ProductCategory::orderByRaw("name='dog' DESC")
-        ->orderByRaw("name='cat' DESC")->orderBy('name','ASC')->with('sub_category')->where('status',1)->get();
+        $categories = ProductCategory::orderByRaw("name='dog products' DESC")
+        ->orderByRaw("name='cat products' DESC")->orderBy('name','ASC')->with('sub_category')->where('status',1)->get();
         $brands = Brand::orderBy('name','ASC')->where('status',1)->get();
 
         $products = Product::where('status',1);
