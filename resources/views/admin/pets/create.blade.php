@@ -40,6 +40,12 @@
                                 </div>
                                 <div class="col-md-12">
                                     <div class="mb-3">
+                                        <label for="description">Short Description</label>
+                                        <textarea name="short_description" id="short_description" cols="30" rows="10" class="summernote" placeholder=""></textarea>
+                                    </div>
+                                </div> 
+                                <div class="col-md-12">
+                                    <div class="mb-3">
                                         <label for="description">Description</label>
                                         <textarea name="description" id="description" cols="30" rows="10" class="summernote" placeholder="Description"></textarea>
                                     </div>
@@ -82,6 +88,17 @@
                             </div>
                         </div>	                                                                      
                     </div> -->
+                    <div class="card mb-3">
+                        <div class="card-body">
+                            <h2 class="h4 mb-3">Related Pets</h2>
+                            <div class="mb-3">
+                                <select multiple class="related_pet w-100" name="related_pets[]" id="related_pets">
+                                   
+                                </select>
+                                <p class="error"></p>
+                            </div>
+                        </div>
+                    </div>
                     <div class="card mb-3">
                         <div class="card-body">
                             <h2 class="h4 mb-3">Pet Details</h2>								
@@ -183,6 +200,22 @@
 
 @section('customJs')
 <script>
+//Recommendations
+    $('.related_pet').select2({
+        ajax: {
+            url: '{{ route("pets.getPets") }}',
+            dataType: 'json',
+            tags: true,
+            multiple: true,
+            minimumInputLength: 3,
+            processResults: function (data) {
+                return {
+                    results: data.tags
+                };
+            }
+        }
+    }); 
+
 //To select the slug as the name given to the sub category
         $("#name").change(function(){
             element = $(this);

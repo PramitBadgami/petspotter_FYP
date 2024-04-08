@@ -64,6 +64,8 @@ class PetController extends Controller
             $pet->category_id = $request->category;
             $pet->breed_id = $request->breed;
             $pet->is_featured = $request->is_featured;
+            $pet->short_description = $request->short_description;
+            $pet->related_pets = (!empty($request->related_pets)) ? implode(',',$request->related_pets) : '';
             $pet->save();
 
             //Save Gallery Pictures
@@ -133,6 +135,12 @@ class PetController extends Controller
         // Fetch Product Images
         $petImages = PetImage::where('pet_id',$pet->id)->get();
 
+        $relatedPets = [];
+        // fetch related products
+        if($pet->related_pets != '') {
+            $petArray = explode(',',$pet->related_pets);
+            $relatedPets = Pet::whereIn('id',$petArray)->with('pet_images')->get();
+        }
 
         $data = [];
         $data['pet'] = $pet;
@@ -143,6 +151,7 @@ class PetController extends Controller
         // $data['pet'] = $pet;
         $data['breeds'] = $breeds;
         $data['petImages'] = $petImages;
+        $data['relatedPets'] = $relatedPets;
         return view('admin.pets.edit', $data);
     }
 
@@ -175,6 +184,8 @@ class PetController extends Controller
             $pet->category_id = $request->category;
             $pet->breed_id = $request->breed;
             $pet->is_featured = $request->is_featured;
+            $pet->short_description = $request->short_description;
+            $pet->related_pets = (!empty($request->related_pets)) ? implode(',',$request->related_pets) : '';
             $pet->save();
 
             //Save Gallery Pictures
@@ -230,5 +241,29 @@ class PetController extends Controller
         
 
     }
+
+    public function getPets(Request $request)
+    {
+        $tempPet = [];
+        if($request->term != ""){
+            $pets = Pet::where('name','like','%'.$request->term.'%')->get();
+
+            if ($pets !=null) {
+                foreach ($pets as $pet) {
+                    $tempPet[] = array('id' => $pet->id, 'text' => $pet->name);
+                }
+            }
+        }
+
+
+        return response()->json([
+            'tags' => $tempPet,
+            'status' => true
+        ]);
+
+        // print_r($tempPet);
+
+    }
+    
 
 }

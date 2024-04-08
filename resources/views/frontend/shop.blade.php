@@ -186,6 +186,7 @@
 
     function apply_filter() {
         var brands = [];
+        
         $(".brand-label").each(function() {
             if ($(this).is(":checked") == true){
                 brands.push($(this).val());

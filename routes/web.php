@@ -19,6 +19,7 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\admin\PetController;
 use App\Http\Controllers\admin\PetImageController;
+use App\Http\Controllers\AdoptController;
 
 
 use Illuminate\Http\Request;
@@ -47,7 +48,8 @@ Route::post('/update-cart',[CartController::class,'updateCart'])->name('frontend
 Route::post('/delete-item',[CartController::class,'deleteItem'])->name('frontend.deleteItem.cart');
 Route::get('/checkout',[CartController::class,'checkout'])->name('frontend.checkout');
 
-
+Route::get('/adoption/{categorySlug?}',[AdoptController::class,'index'])->name('frontend.adoption');
+Route::get('/pet/{slug}',[AdoptController::class,'pet'])->name('frontend.pet');
 
 
 
@@ -152,6 +154,7 @@ Route::group(['prefix'=>'admin'],function(){
         Route::get('/pets/{pet}/edit', [PetController::class, 'edit'])->name('pets.edit');
         Route::put('/pets/{pet}', [PetController::class, 'update'])->name('pets.update');
         Route::delete('/pets/{pet}', [PetController::class, 'destroy'])->name('pets.delete');
+        Route::get('/get-pets',[PetController::class,'getPets'])->name('pets.getPets');
 
         Route::post('/pet-images/update', [PetImageController::class, 'update'])->name('pet-images.update');
         Route::delete('/pet-images', [PetImageController::class, 'destroy'])->name('pet-images.destroy');

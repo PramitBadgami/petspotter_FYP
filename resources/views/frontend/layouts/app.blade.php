@@ -113,8 +113,9 @@
 	<div class="container">
 		<nav class="navbar navbar-expand-xl" id="navbar">
 			<a href="{{ route('frontend.home') }}" class="text-decoration-none mobile-logo">
-				<span class="h2 text-uppercase text-primary bg-dark">Online</span>
-				<span class="h2 text-uppercase text-white px-2">SHOP</span>
+				<!-- <span class="h2 text-uppercase text-primary bg-dark">Online</span>
+				<span class="h2 text-uppercase text-white px-2">SHOP</span> -->
+				<img class="logo" src="{{ asset('logo/petspotter-logo.png') }}" style="width: 50%; margin-top: -10px;">
 			</a>
 			<button class="navbar-toggler menu-btn" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       			<!-- <span class="navbar-toggler-icon icon-menu"></span> -->
@@ -183,7 +184,7 @@
 								@if(getCategories()->isNotEmpty())
 									@foreach (getCategories() as $category)
 										<li class="dropdown-item">
-											<a href="#" class="category-item" data-category-id="{{ $category->id }}">{{ $category->name }}</a>
+											<a href="{{ route('frontend.shop',[$category->slug]) }}" class="category-item" data-category-id="{{ $category->id }}">{{ $category->name }}</a>
 											<ul class="dropdown-menu subcategories" id="subcategories_{{ $category->id }}">
 												@foreach ($category->sub_category as $subCategory)
 													<li><a class="dropdown-item nav-link" href="{{ route('frontend.shop',[$category->slug,$subCategory->slug]) }}">{{ $subCategory->name }}</a></li>
@@ -230,7 +231,7 @@
 					<ul>
 						<li><a href="about-us.php" title="About">About</a></li>
 						<li><a href="contact-us.php" title="Contact Us">Contact Us</a></li>						
-						<li><a href="#" title="Privacy">Privacy</a></li>
+						<li><a href="https://vijayrajkhadka.com.np/" title="Privacy">Privacy</a></li>
 						<li><a href="#" title="Privacy">Terms & Conditions</a></li>
 						<li><a href="#" title="Privacy">Refund Policy</a></li>
 					</ul>

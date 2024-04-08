@@ -35,7 +35,7 @@
                     <div class="p-3">
                         <h1 class="display-4 text-white mb-3">Dog Products</h1>
                         <p class="mx-md-5 px-5">Lorem rebum magna amet lorem magna erat diam stet. Sadips duo stet amet amet ndiam elitr ipsum diam</p>
-                        <a class="btn btn-outline-light py-2 px-4 mt-3" href="#">Shop Now</a>
+                        <a class="btn btn-outline-light py-2 px-4 mt-3" href="http://127.0.0.1:8000/shop/dog-products">Shop Now</a>
                     </div>
                 </div>
             </div>
@@ -52,7 +52,7 @@
                     <div class="p-3">
                         <h1 class="display-4 text-white mb-3">Cat Products</h1>
                         <p class="mx-md-5 px-5">Lorem rebum magna amet lorem magna erat diam stet. Sadips duo stet amet amet ndiam elitr ipsum diam</p>
-                        <a class="btn btn-outline-light py-2 px-4 mt-3" href="#">Shop Now</a>
+                        <a class="btn btn-outline-light py-2 px-4 mt-3" href="http://127.0.0.1:8000/shop/cat-products">Shop Now</a>
                     </div>
                 </div>
             </div>
@@ -105,23 +105,25 @@
         </div>           
         <div class="row pb-3">
             @if (getPetCategories()->isNotEmpty())
-            @foreach (getPetCategories() as $category)
-            <div class="col-lg-3">
-                <div class="cat-card">
-                    <div class="left" style="height: 140px; overflow: hidden;">
-                        @if ($category->image != "")
-                        <img src="{{ asset('uploads/petcategory/thumb/'.$category->image) }}" alt="" class="img-fluid"  style="object-fit: cover; object-position: center; width: 100%; height: 100%;">
-                        @endif
-                    </div>
-                    <div class="right">
-                        <div class="cat-data">
-                            <h2>{{ $category->name }}</h2>
-                            <!-- <p>100 Products</p> -->
+                @foreach (getPetCategories() as $index => $category)
+                    @if ($index < 4)
+                    <div class="col-lg-3">
+                        <div class="cat-card">
+                            <div class="left" style="height: 140px; overflow: hidden;">
+                                @if ($category->image != "")
+                                <img src="{{ asset('uploads/petcategory/thumb/'.$category->image) }}" alt="" class="img-fluid"  style="object-fit: cover; object-position: center; width: 100%; height: 100%;">
+                                @endif
+                            </div>
+                            <div class="right">
+                                <div class="cat-data">
+                                    <h2>{{ $category->name }}</h2>
+                                    <!-- <p>100 Products</p> -->
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </div>
-            @endforeach
+                    @endif
+                @endforeach
             @endif
 
         </div>
@@ -142,7 +144,7 @@
                 <div class="col-md-3">
                     <div class="card product-card" style="height: 370px;">
                         <div class="product-image position-relative">
-                            <a href="" class="product-img">
+                            <a href="{{ route('frontend.pet',$pet->slug) }}" class="product-img">
                                 
 
                                 @if (!empty($petImage->image))
@@ -157,9 +159,9 @@
                             
                         </div>                        
                         <div class="card-body text-center mt-3">
-                            <a class="h6 link" href="product.php">{{ $pet->name }}</a>
+                            <a class="h6 link" href="product.php"><h6><strong>{{ $pet->name }}</strong></h6></a>
                             <div class="price mt-2">
-                                <span class="h5"><strong>{{ $pet->age }}</strong></span>
+                                <span class="h8">Age: {{ $pet->age }}</span>
                                 
                             </div>
                         </div>                        
@@ -188,7 +190,7 @@
             <div class="col-md-3">
                 <div class="card product-card" style="height: 370px;">
                     <div class="product-image position-relative">
-                        <a href="#" class="product-img">
+                        <a href="{{ route('frontend.pet',$pet->slug) }}" class="product-img">
                             
 
                             @if (!empty($petImage->image))
@@ -196,19 +198,20 @@
                             @else
                                 <img class="card-img-top" src="{{ asset('admin-assets/img/default-150x150.png') }}" style="object-fit: contain; object-position: center; width: 100%; height: 260px; padding: 5px;">
                             @endif
+                            
                         </a>
                         <a class="whishlist" href="222"><i class="far fa-heart"></i></a>                            
 
                         
                     </div>                        
                     <div class="card-body text-center mt-3">
-                        <a class="h6 link" href="product.php">{{ $pet->name }}</a>
+                        <a class="h6 link" href="product.php"><h6><strong>{{ $pet->name }}</strong></h6></a>
                         <div class="price mt-2">
-                            <span class="h5"><strong>{{ $pet->age }}</strong></span>
+                            <span class="h8">Age: {{ $pet->age }}</span>
                             
                         </div>
                     </div>                        
-                </div>                                               
+                </div>                                   
             </div> 
             @endforeach
         @endif
