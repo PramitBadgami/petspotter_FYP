@@ -2,6 +2,7 @@
 
 use App\Models\ProductCategory;
 use App\Models\PetCategory;
+use App\Models\ProductImage;
 
 function getCategories(){
     return ProductCategory::orderByRaw("name='dog products' DESC")
@@ -22,5 +23,9 @@ function getPetCategories(){
                         ->where('status',1)
                         ->where('showHome','Yes')
                         ->get();
+}
+
+function getProductImage($productId){
+    return ProductImage::where('product_id',$productId)->first();
 }
 ?>

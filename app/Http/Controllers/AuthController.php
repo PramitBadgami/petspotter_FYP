@@ -7,6 +7,9 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use App\Models\Order;
+use App\Models\OrderItem;
+use Gloudemans\Shoppingcart\Facades\Cart;
 
 class AuthController extends Controller
 {
@@ -61,6 +64,10 @@ class AuthController extends Controller
 
             if(Auth::attempt(['email' => $request->email, 'password' => $request->password],$request->get('remember'))) {
 
+                if (session()->has('url.intended')) {
+                    return redirect(session()->get('url.intended'));
+                }
+
                 return redirect()->route('account.profile');
 
             } else{ //when the email/password is invalid
@@ -83,7 +90,33 @@ class AuthController extends Controller
 
     public function logout() {
         Auth::logout();
+        Cart::destroy();
         return redirect()->route('account.login')
         ->with('success', 'You successfully logged out.');
+    }
+
+
+    public function orders() {
+        $data = [];
+        $user = Auth::user();
+        
+        $orders = Order::where('user_id', $user->id)->orderBy('created_at', 'DESC')->get();
+
+        $data['orders'] = $orders;
+        return view('frontend.account.order',$data);
+    }
+
+    public function orderDetail($id) {
+        // echo $id;
+        $data = [];
+        $user = Auth::user();
+
+        $order = Order::where('user_id', $user->id)->where('id',$id)->first();
+        $data['order'] = $order;
+
+        $orderItems = OrderItem::where('order_id', $order->id)->get();
+        $data['orderItems'] = $orderItems;
+        return view('frontend.account.order-detail',$data);
+
     }
 }

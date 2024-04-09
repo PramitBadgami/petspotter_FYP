@@ -110,7 +110,7 @@
                                     @endif
                                     </a>
 
-                                    <a class="whishlist" href="222"><i class="far fa-heart"></i></a>                            
+                                    <a title="Add to favourites list" class="whishlist" href="222"><i class="far fa-heart"></i></a>                            
 
                                    
                                 </div>                        

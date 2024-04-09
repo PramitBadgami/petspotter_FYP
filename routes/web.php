@@ -13,12 +13,14 @@ use App\Http\Controllers\admin\TempPetImagesController;
 use App\Http\Controllers\admin\ProductController;
 use App\Http\Controllers\admin\ProductSubCategoryController;
 use App\Http\Controllers\admin\ProductImageController;
+use App\Http\Controllers\admin\PetImageController;
+use App\Http\Controllers\admin\PetController;
+use App\Http\Controllers\admin\ShippingController;
+
 use App\Http\Controllers\FrontController;
 use App\Http\Controllers\ShopController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\admin\PetController;
-use App\Http\Controllers\admin\PetImageController;
 use App\Http\Controllers\AdoptController;
 
 
@@ -47,6 +49,9 @@ Route::post('/add-to-cart',[CartController::class,'addToCart'])->name('frontend.
 Route::post('/update-cart',[CartController::class,'updateCart'])->name('frontend.updateCart');
 Route::post('/delete-item',[CartController::class,'deleteItem'])->name('frontend.deleteItem.cart');
 Route::get('/checkout',[CartController::class,'checkout'])->name('frontend.checkout');
+Route::post('/process-checkout',[CartController::class,'processCheckout'])->name('frontend.processCheckout');
+Route::get('/thanks/{orderId}',[CartController::class,'thankyou'])->name('frontend.thankyou');
+Route::post('/get-order-summary',[CartController::class,'getOrderSummary'])->name('frontend.getOrderSummary');
 
 Route::get('/adoption/{categorySlug?}',[AdoptController::class,'index'])->name('frontend.adoption');
 Route::get('/pet/{slug}',[AdoptController::class,'pet'])->name('frontend.pet');
@@ -71,6 +76,8 @@ Route::group(['prefix'=>'account'],function(){
 
     Route::group(['middleware' => 'auth'],function(){
         Route::get('/profile',[AuthController::class,'profile'])->name('account.profile');
+        Route::get('/my-orders',[AuthController::class,'orders'])->name('account.orders');
+        Route::get('/order-detail/{orderId}',[AuthController::class,'orderDetail'])->name('account.orderDetail');
         Route::get('/logout',[AuthController::class,'logout'])->name('account.logout');
 
         
@@ -139,6 +146,19 @@ Route::group(['prefix'=>'admin'],function(){
         Route::delete('/products/{product}', [ProductController::class, 'destroy'])->name('products.delete');
         Route::get('/get-products',[ProductController::class,'getProducts'])->name('products.getProducts');
 
+        Route::get('/product-subcategories', [ProductSubCategoryController::class, 'index'])->name('product-subcategories.index');
+
+        Route::post('/product-images/update', [ProductImageController::class, 'update'])->name('product-images.update');
+        Route::delete('/product-images', [ProductImageController::class, 'destroy'])->name('product-images.destroy');
+
+        // Shipping Routes
+        Route::get('/shipping/create', [ShippingController::class, 'create'])->name('shipping.create');
+        Route::post('/shipping', [ShippingController::class, 'store'])->name('shipping.store');
+        Route::get('/shipping/{id}', [ShippingController::class, 'edit'])->name('shipping.edit');
+        Route::put('/shipping/{id}', [ShippingController::class, 'update'])->name('shipping.update');
+        Route::delete('/shipping/{id}', [ShippingController::class, 'destroy'])->name('shipping.delete');
+
+
         // Breeds Routes
         Route::get('/breeds', [BreedController::class, 'index'])->name('breeds.index');
         Route::get('/breeds/create', [BreedController::class, 'create'])->name('breeds.create');
@@ -160,10 +180,7 @@ Route::group(['prefix'=>'admin'],function(){
         Route::delete('/pet-images', [PetImageController::class, 'destroy'])->name('pet-images.destroy');
 
 
-        Route::get('/product-subcategories', [ProductSubCategoryController::class, 'index'])->name('product-subcategories.index');
 
-        Route::post('/product-images/update', [ProductImageController::class, 'update'])->name('product-images.update');
-        Route::delete('/product-images', [ProductImageController::class, 'destroy'])->name('product-images.destroy');
 
 
 
