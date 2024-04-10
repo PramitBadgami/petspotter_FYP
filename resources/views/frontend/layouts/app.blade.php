@@ -173,7 +173,7 @@
 									@if(getPetCategories()->isNotEmpty())
 									<ul class="dropdown-menu dropdown-menu-dark">
 										@foreach (getPetCategories() as $category)
-										<li><a class="dropdown-item nav-link" href="{{ route('frontend.shop',[$category->slug]) }}">{{ $category->name }}</a></li>
+										<li><a class="dropdown-item nav-link" href="{{ route('frontend.adoption',[$category->slug]) }}">{{ $category->name }}</a></li>
 										@endforeach
 									</ul>
 									@endif	

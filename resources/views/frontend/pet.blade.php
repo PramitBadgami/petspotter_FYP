@@ -16,7 +16,43 @@
 <section class="section-7 pt-3 mb-3">
     <div class="container">
         <div class="row ">
-            <div class="col-md-5">
+        <div class="col-md-7">
+                <div class="bg-light ">
+                    <center><h1>Name: {{ $pet->name }}</h1></center>
+                    <!-- <div class="d-flex mb-3">
+                        <div class="text-primary mr-2">
+                            <small class="fas fa-star"></small>
+                            <small class="fas fa-star"></small>
+                            <small class="fas fa-star"></small>
+                            <small class="fas fa-star-half-alt"></small>
+                            <small class="far fa-star"></small>
+                        </div>
+                        <small class="pt-1">(99 Reviews)</small>
+                    </div> -->
+                    <hr>
+                    <center><h2 class="age mb-4">Age: {{ $pet->age }}</h2></center>
+                    <hr>
+                    <center><h5 class="age mb-4">
+                    @if($pet->gender == 'Male')
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-gender-male" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M9.5 2a.5.5 0 0 1 0-1h5a.5.5 0 0 1 .5.5v5a.5.5 0 0 1-1 0V2.707L9.871 6.836a5 5 0 1 1-.707-.707L13.293 2zM6 6a4 4 0 1 0 0 8 4 4 0 0 0 0-8"/>
+                        </svg>
+                    @else
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-gender-female" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M8 1a4 4 0 1 0 0 8 4 4 0 0 0 0-8M3 5a5 5 0 1 1 5.5 4.975V12h2a.5.5 0 0 1 0 1h-2v2.5a.5.5 0 0 1-1 0V13h-2a.5.5 0 0 1 0-1h2V9.975A5 5 0 0 1 3 5"/>
+                        </svg>
+                    @endif
+                    {{ $pet->gender }}
+                    
+                    </h5></center>
+                    <hr>
+                    {!! $pet->short_description !!}
+                    
+
+                    <a href="cart.php" class="btn btn-dark"><i class="fa fa-check-circle"></i> &nbsp;VERIFY</a>
+                </div>
+            </div>
+            <div class="col-md-5 right">
                 <div id="product-carousel" class="carousel slide" data-bs-ride="carousel">
                     <div class="carousel-inner bg-light">
                         
@@ -36,42 +72,7 @@
                     </a>
                 </div>
             </div>
-            <div class="col-md-7">
-                <div class="bg-light right">
-                    <h1>Name: {{ $pet->name }}</h1>
-                    <!-- <div class="d-flex mb-3">
-                        <div class="text-primary mr-2">
-                            <small class="fas fa-star"></small>
-                            <small class="fas fa-star"></small>
-                            <small class="fas fa-star"></small>
-                            <small class="fas fa-star-half-alt"></small>
-                            <small class="far fa-star"></small>
-                        </div>
-                        <small class="pt-1">(99 Reviews)</small>
-                    </div> -->
-                    <hr>
-                    <h2 class="age mb-4">Age: {{ $pet->age }}</h2>
-                    <hr>
-                    <h5 class="age mb-4">
-                    @if($pet->gender == 'Male')
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-gender-male" viewBox="0 0 16 16">
-                            <path fill-rule="evenodd" d="M9.5 2a.5.5 0 0 1 0-1h5a.5.5 0 0 1 .5.5v5a.5.5 0 0 1-1 0V2.707L9.871 6.836a5 5 0 1 1-.707-.707L13.293 2zM6 6a4 4 0 1 0 0 8 4 4 0 0 0 0-8"/>
-                        </svg>
-                    @else
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-gender-female" viewBox="0 0 16 16">
-                            <path fill-rule="evenodd" d="M8 1a4 4 0 1 0 0 8 4 4 0 0 0 0-8M3 5a5 5 0 1 1 5.5 4.975V12h2a.5.5 0 0 1 0 1h-2v2.5a.5.5 0 0 1-1 0V13h-2a.5.5 0 0 1 0-1h2V9.975A5 5 0 0 1 3 5"/>
-                        </svg>
-                    @endif
-                    {{ $pet->gender }}
-                    
-                    </h5>
-                    <hr>
-                    {!! $pet->short_description !!}
-                    
-
-                    <a href="cart.php" class="btn btn-dark"><i class="fa fa-check-circle"></i> &nbsp;VERIFY</a>
-                </div>
-            </div>
+            
 
             <div class="col-md-12 mt-5">
                 <div class="bg-light">

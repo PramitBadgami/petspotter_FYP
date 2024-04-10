@@ -16,6 +16,8 @@ use App\Http\Controllers\admin\ProductImageController;
 use App\Http\Controllers\admin\PetImageController;
 use App\Http\Controllers\admin\PetController;
 use App\Http\Controllers\admin\ShippingController;
+use App\Http\Controllers\admin\OrderController;
+
 
 use App\Http\Controllers\FrontController;
 use App\Http\Controllers\ShopController;
@@ -39,6 +41,10 @@ use Illuminate\Http\Request;
 
 // Route::get('/', function () {
 //     return view('welcome');
+// });
+
+// Route::get('/test', function () {
+//     orderEmail(17);
 // });
 
 Route::get('/',[FrontController::class,'index'])->name('frontend.home');
@@ -180,8 +186,11 @@ Route::group(['prefix'=>'admin'],function(){
         Route::delete('/pet-images', [PetImageController::class, 'destroy'])->name('pet-images.destroy');
 
 
-
-
+        // Order Routes
+        Route::get('/orders', [OrderController::class, 'index'])->name('orders.index');
+        Route::get('/orders/{id}', [OrderController::class, 'detail'])->name('orders.detail');
+        Route::post('/order/change-status/{id}', [OrderController::class, 'changeOrderStatus'])->name('orders.changeOrderStatus');
+        Route::post('/order/send-email/{id}', [OrderController::class, 'sendInvoiceEmail'])->name('orders.sendInvoiceEmail');
 
 
         //temp-images.create
