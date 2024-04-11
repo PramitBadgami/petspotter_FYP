@@ -47,6 +47,10 @@ class AdoptController extends Controller
 
         }
 
+        if(!empty($request->get('search'))) {
+            $pets = $pets->where('name','like','%'.$request->get('search').'%');
+        }
+
 
         if ($request->get('sort') != '') {
             if($request->get('sort') == 'latest') {

@@ -4,6 +4,7 @@ use App\Mail\OrderEmail;
 use App\Models\ProductCategory;
 use App\Models\PetCategory;
 use App\Models\ProductImage;
+use App\Models\PetImage;
 use App\Models\Order;
 use App\Models\Country;
 use Illuminate\Support\Facades\Mail;
@@ -31,6 +32,10 @@ function getPetCategories(){
 
 function getProductImage($productId){
     return ProductImage::where('product_id',$productId)->first();
+}
+
+function getPetImage($petId){
+    return PetImage::where('pet_id',$petId)->first();
 }
 
 function orderEmail($orderId, $userType="customer"){

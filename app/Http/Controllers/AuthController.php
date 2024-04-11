@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Models\Order;
+use App\Models\Wishlist;
+use App\Models\Favouritelist;
 use App\Models\OrderItem;
 use Gloudemans\Shoppingcart\Facades\Cart;
 
@@ -122,5 +124,65 @@ class AuthController extends Controller
 
         return view('frontend.account.order-detail',$data);
 
+    }
+
+
+    public function wishlist() {
+
+        // returns current logged in user object
+        $wishlists = Wishlist::where('user_id',Auth::user()->id)->with('product')->get();
+        $data = [];
+        $data['wishlists'] = $wishlists;
+        return view('frontend.account.wishlist',$data);
+
+    }
+
+    public function removeProductFromWishList(Request $request) {
+        $wishlist = Wishlist::where('user_id',Auth::user()->id)->where('product_id',$request->id)->first();
+
+        if($wishlist == null) {
+            session()->flash('error','Product already removed from Wishlist.');
+            return response()->json([
+               'status' => true,
+            ]);
+        } else {
+            Wishlist::where('user_id',Auth::user()->id)->where('product_id',$request->id)->delete();
+
+            session()->flash('success','Product removed successfully.');
+
+            return response()->json([
+               'status' => true,
+            ]);
+        }
+    }
+
+    public function favouritelist() {
+
+        // returns current logged in user object
+        $favouritelists = Favouritelist::where('user_id',Auth::user()->id)->with('pet')->get();
+        $data = [];
+        $data['favouritelists'] = $favouritelists;
+        
+        return view('frontend.account.favouritelist',$data);
+
+    }
+
+
+    public function removePetFromFavouritelist(Request $request) {
+        $favouritelist = Favouritelist::where('user_id',Auth::user()->id)->where('pet_id',$request->id)->first();
+        if($favouritelist == null) {
+            session()->flash('error','Pet already removed from Favourites List.');
+            return response()->json([
+               'status' => true,
+            ]);
+        } else {
+            Favouritelist::where('user_id',Auth::user()->id)->where('pet_id',$request->id)->delete();
+
+            session()->flash('success','Pet removed successfully.');
+
+            return response()->json([
+               'status' => true,
+            ]);
+        }
     }
 }

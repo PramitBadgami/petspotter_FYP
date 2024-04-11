@@ -154,7 +154,9 @@
                                 @endif
 
                             </a>
-                            <a title="Add to favourites list" class="whishlist" href="222"><i class="far fa-heart"></i></a>                            
+                            <a onclick="addToFavouriteList({{ $pet->id }})" title="Add to favourites list" class="whishlist" href="javascript:void(0)"><i class="far fa-heart"></i></a>                            
+
+                            <!-- <a title="Add to favourites list" class="whishlist" href="222"><i class="far fa-heart"></i></a>                             -->
 
                             
                         </div>                        
@@ -200,7 +202,8 @@
                             @endif
                             
                         </a>
-                        <a title="Add to favourites list" class="whishlist" href="222"><i class="far fa-heart"></i></a>                            
+                        <a onclick="addToFavouriteList({{ $pet->id }})" title="Add to favourites list" class="whishlist" href="javascript:void(0)"><i class="far fa-heart"></i></a>                            
+                        <!-- <a title="Add to favourites list" class="whishlist" href="222"><i class="far fa-heart"></i></a>                             -->
 
                         
                     </div>                        
@@ -244,12 +247,25 @@
                                 @endif
 
                             </a>
-                            <a title="Add to whishlist" class="whishlist" href="222"><i class="far fa-heart"></i></a>                            
+                            <a onclick="addToWishList({{ $product->id }})" title="Add to whishlist" class="whishlist" href="javascript:void(0)"><i class="far fa-heart"></i></a>                            
+                            <!-- <a onclick="addToWishList({{ $product->id }})" title="Add to whishlist" class="whishlist" href="javascript:void(0)"><i class="far fa-heart"></i></a>                             -->
 
                             <div class="product-action">
-                                <a class="btn btn-dark" href="javacript:void(0);" onclick="addToCart({{ $product->id }});">
-                                    <i class="fa fa-shopping-cart"></i> Add To Cart
-                                </a>                            
+                                @if($product->track_qty == 'Yes')
+                                    @if($product->qty > 0)
+                                        <a class="btn btn-dark" href="javacript:void(0);" onclick="addToCart({{ $product->id }});">
+                                            <i class="fa fa-shopping-cart"></i> Add To Cart
+                                        </a>     
+                                    @else
+                                        <a class="btn btn-dark" href="javacript:void(0);">
+                                            Out of Stock
+                                        </a> 
+                                    @endif     
+                                @else
+                                    <a class="btn btn-dark" href="javacript:void(0);" onclick="addToCart({{ $product->id }});">
+                                        <i class="fa fa-shopping-cart"></i> Add To Cart
+                                    </a> 
+                                @endif                  
                             </div>
                         </div>                        
                         <div class="card-body text-center mt-3">
@@ -298,12 +314,24 @@
                             <img src="{{ asset('admin-assets/img/default-150x150.png') }}"  style="object-fit: contain; object-position: center; width: 100%; height: 260px; padding: 5px;">
                             @endif
                         </a>
-                        <a title="Add to whishlist" class="whishlist" href="222"><i class="far fa-heart"></i></a>                            
+                        <a onclick="addToWishList({{ $product->id }})" title="Add to whishlist" class="whishlist" href="javascript:void(0)"><i class="far fa-heart"></i></a>                            
 
                         <div class="product-action">
-                            <a class="btn btn-dark" href="javacript:void(0);" onclick="addToCart({{ $product->id }});">
-                                <i class="fa fa-shopping-cart"></i> Add To Cart
-                            </a>                            
+                            @if($product->track_qty == 'Yes')
+                                @if($product->qty > 0)
+                                    <a class="btn btn-dark" href="javacript:void(0);" onclick="addToCart({{ $product->id }});">
+                                        <i class="fa fa-shopping-cart"></i> Add To Cart
+                                    </a>     
+                                @else
+                                    <a class="btn btn-dark" href="javacript:void(0);">
+                                        Out of Stock
+                                    </a> 
+                                @endif     
+                            @else
+                                <a class="btn btn-dark" href="javacript:void(0);" onclick="addToCart({{ $product->id }});">
+                                    <i class="fa fa-shopping-cart"></i> Add To Cart
+                                </a> 
+                            @endif                  
                         </div>
                     </div>                        
                     <div class="card-body text-center mt-3">

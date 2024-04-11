@@ -100,12 +100,12 @@
 				@else
 				<a href="{{ route('account.login') }}" class="nav-link text-dark">Login/Register</a>
 				@endif
-				<form action="">					
+				<form action="{{ route('frontend.adoption') }}" method="get">					
 					<div class="input-group">
-						<input type="text" placeholder="Search For Products" class="form-control" aria-label="Amount (to the nearest dollar)">
-						<span class="input-group-text">
+						<input value="{{ Request::get('search') }}" type="text" placeholder="Search For Pets" class="form-control" name="search" id="search">
+						<button type="submit" class="input-group-text">
 							<i class="fa fa-search"></i>
-					  	</span>
+					  	</button>
 					</div>
 				</form>
 			</div>		
@@ -202,11 +202,21 @@
 
       			   			
       		</div>   
-			<div class="right-nav py-0">
-				<a href="{{ route('frontend.cart') }}" class="ml-3 d-flex pt-2">
-					<i class="fas fa-shopping-cart text-primary"></i>					
-				</a>
-			</div> 		
+			<div class="right-nav py-0 d-flex gap-3">
+				<div class="ml-3 d-flex pt-2">
+					<a title="Favourites List" href="{{ route('account.favouritelist') }}">
+						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#F7CA0D" class="bi bi-heart-fill" viewBox="0 0 16 16">
+							<path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314"/>
+						</svg>                    
+					</a>
+				</div>
+
+				<div class="ml-3 d-flex pt-2">
+					<a href="{{ route('frontend.cart') }}">
+						<i class="fas fa-shopping-cart text-primary"></i>                  
+					</a>
+				</div>
+			</div>
       	</nav>
   	</div>
 </header>
@@ -266,6 +276,43 @@
 		</div>
 	</div>
 </footer>
+
+<!-- Wishlist Modal -->
+<div class="modal fade" id="wishlistModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLabel">Success</h5>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			<div class="modal-body">
+				
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- Favouritelist Modal -->
+<div class="modal fade" id="favouritelistModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLabel">Success</h5>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			<div class="modal-body">
+				
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+			</div>
+		</div>
+	</div>
+</div>
+
 <script src="{{ asset('front-assets/js/jquery-3.6.0.min.js') }}"></script>
 <script src="{{ asset('front-assets/js/bootstrap.bundle.5.1.3.min.js') }}"></script>
 <script src="{{ asset('front-assets/js/instantpages.5.1.0.min.js') }}"></script>
@@ -386,6 +433,48 @@ function fetchSubcategories(categoryId) {
             });
         }
     });
+</script>
+
+<script>
+	function addToWishList(id) {
+		$.ajax({
+			url: '{{ route("frontend.addToWishlist") }}',
+			type: "POST",
+			data: {id:id},
+			dataType: 'json',
+			success: function(response) {
+				if(response.status == true) {
+					
+					$("#wishlistModal .modal-body").html(response.message);
+					$("#wishlistModal").modal('show');
+
+				} else {
+					window.location.href = "{{ route('account.login') }}";
+					// alert(response.message);
+				}
+			}
+		});
+	}
+</script>
+<script>
+
+	function addToFavouriteList(id) {
+		$.ajax({
+			url: '{{ route("frontend.addToFavouritelist") }}',
+			type: "POST",
+			data: {id:id},
+			dataType: 'json',
+			success: function(response) {
+				if(response.status == true) {
+					$("#favouritelistModal .modal-body").html(response.message);
+					$("#favouritelistModal").modal('show');
+				} else {
+					window.location.href = "{{ route('account.login') }}";
+				}
+			}
+		});
+	}
+	
 </script>
 
 @yield('customJs')

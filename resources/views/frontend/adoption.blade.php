@@ -110,8 +110,7 @@
                                     @endif
                                     </a>
 
-                                    <a title="Add to favourites list" class="whishlist" href="222"><i class="far fa-heart"></i></a>                            
-
+                                    <a onclick="addToFavouriteList({{ $pet->id }})" title="Add to favourites list" class="whishlist" href="javascript:void(0)"><i class="far fa-heart"></i></a>
                                    
                                 </div>                        
                                 <div class="card-body text-center mt-3">
@@ -193,6 +192,13 @@
         url += '&age_min=' +slider.result.from+'&age_max=' +slider.result.to;
 
         // Sortings Filter
+
+        var keyword = $("#search").val();
+
+        if (keyword.length > 0) {
+            url += '&search='+keyword;
+        }
+
         url += '&sort=' + $("#sort").val();
 
         window.location.href = url;

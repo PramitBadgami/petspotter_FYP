@@ -58,6 +58,8 @@ Route::get('/checkout',[CartController::class,'checkout'])->name('frontend.check
 Route::post('/process-checkout',[CartController::class,'processCheckout'])->name('frontend.processCheckout');
 Route::get('/thanks/{orderId}',[CartController::class,'thankyou'])->name('frontend.thankyou');
 Route::post('/get-order-summary',[CartController::class,'getOrderSummary'])->name('frontend.getOrderSummary');
+Route::post('/add-to-wishlist',[FrontController::class,'addToWishlist'])->name('frontend.addToWishlist');
+Route::post('/add-to-favouritelist',[FrontController::class,'addToFavouritelist'])->name('frontend.addToFavouritelist');
 
 Route::get('/adoption/{categorySlug?}',[AdoptController::class,'index'])->name('frontend.adoption');
 Route::get('/pet/{slug}',[AdoptController::class,'pet'])->name('frontend.pet');
@@ -83,6 +85,10 @@ Route::group(['prefix'=>'account'],function(){
     Route::group(['middleware' => 'auth'],function(){
         Route::get('/profile',[AuthController::class,'profile'])->name('account.profile');
         Route::get('/my-orders',[AuthController::class,'orders'])->name('account.orders');
+        Route::get('/my-wishlist',[AuthController::class,'wishlist'])->name('account.wishlist');
+        Route::post('/remove-product-from-wishlist',[AuthController::class,'removeProductFromWishList'])->name('account.removeProductFromWishList');
+        Route::get('/my-favouritelist',[AuthController::class,'favouritelist'])->name('account.favouritelist');
+        Route::post('/remove-pet-from-favouritelist',[AuthController::class,'removePetFromFavouritelist'])->name('account.removePetFromFavouritelist');
         Route::get('/order-detail/{orderId}',[AuthController::class,'orderDetail'])->name('account.orderDetail');
         Route::get('/logout',[AuthController::class,'logout'])->name('account.logout');
 

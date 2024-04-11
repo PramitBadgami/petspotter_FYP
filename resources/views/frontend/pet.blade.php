@@ -127,8 +127,7 @@
                             @endif
                         </a>
 
-                        <a title="Add to favourites list" class="whishlist" href="222"><i class="far fa-heart"></i></a>                            
-
+                        <a onclick="addToFavouriteList({{ $relPets->id }})" title="Add to favourites list" class="whishlist" href="javascript:void(0)"><i class="far fa-heart"></i></a>
                         <div class="product-action">
                             <a class="btn btn-dark" href="#">
                                 <i class="fa fa-check-circle"></i> Verify
