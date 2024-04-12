@@ -161,7 +161,7 @@
 
 
                     <div class="col-md-12 pt-5">
-                        {{ $products->withQueryString()->links()}}
+                        {{ $products->withQueryString()->links('pagination::bootstrap-5')}}
                     </div>
                 </div>
             </div>

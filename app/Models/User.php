@@ -21,7 +21,16 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'status',
     ];
+
+    protected $primaryKey = "id";
+
+    protected $table = 'users';
+
+    public function verifications() {
+        return $this->hasMany(Verification::class);
+    }
 
     /**
      * The attributes that should be hidden for serialization.

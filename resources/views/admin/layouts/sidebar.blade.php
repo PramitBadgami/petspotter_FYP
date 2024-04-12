@@ -86,6 +86,20 @@
 								</a>
 							</li>
 							<li class="nav-item">
+								<a href="{{ route('verifications.index') }}" class="nav-link">
+									<!-- <i class="nav-icon fas fa-tag"></i> -->
+									<i style="margin-left: 4px;" class="fa fa-check-circle"></i>
+									<p  style="margin-left: 6px;">Verification</p>
+								</a>
+							</li>
+							<li class="nav-item">
+								<a href="{{ route('shipping.create') }}" class="nav-link">
+									<!-- <i class="nav-icon fas fa-tag"></i> -->
+									<i style="margin-left: 1px;" class="fas fa-paw"></i>
+									<p style="margin-left: 6px;">Adoptions</p>
+								</a>
+							</li>
+							<li class="nav-item">
 								<a href="{{ route('shipping.create') }}" class="nav-link">
 									<!-- <i class="nav-icon fas fa-tag"></i> -->
 									<i class="fas fa-truck nav-icon"></i>

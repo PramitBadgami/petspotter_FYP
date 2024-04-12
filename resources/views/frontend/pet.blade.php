@@ -48,8 +48,23 @@
                     <hr>
                     {!! $pet->short_description !!}
                     
+                    @if (Auth::check())
+                        @if ($user->status == 'Unverified')
+                            <a href="{{ route('frontend.verification') }}" class="btn btn-dark"><i class="fa fa-check-circle"></i> &nbsp;VERIFY</a>
+                        @elseif ($user->status == 'In Progress')
+                        <div class="alert alert-primary" role="alert">
+                            <center>Your verification form is currently being reviewed.</center>
+                        </div>
+                        @elseif ($user->status == 'Verified')
+                            <a href="{{ route('frontend.verification') }}" class="btn btn-dark"><i class="fa fa-check-circle"></i> &nbsp;Adopt</a>
+                        @else
+                            <a href="{{ route('frontend.verification') }}" class="btn btn-dark"><i class="fa fa-check-circle"></i> &nbsp;VERIFY</a>
+                        @endif
+                    @else
+                    <a href="{{ route('frontend.verification') }}" class="btn btn-dark"><i class="fa fa-check-circle"></i> &nbsp;VERIFY</a>
 
-                    <a href="cart.php" class="btn btn-dark"><i class="fa fa-check-circle"></i> &nbsp;VERIFY</a>
+                    @endif
+                    
                 </div>
             </div>
             <div class="col-md-5 right">
@@ -129,9 +144,9 @@
 
                         <a onclick="addToFavouriteList({{ $relPets->id }})" title="Add to favourites list" class="whishlist" href="javascript:void(0)"><i class="far fa-heart"></i></a>
                         <div class="product-action">
-                            <a class="btn btn-dark" href="#">
+                            <a class="btn btn-dark" href="{{ route('frontend.verification') }}">
                                 <i class="fa fa-check-circle"></i> Verify
-                            </a>                            
+                            </a>
                         </div>
                     </div>                        
                     <div class="card-body text-center mt-3">

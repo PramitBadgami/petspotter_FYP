@@ -3,9 +3,17 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 use App\Models\PetCategory;
 use App\Models\Breed;
 use App\Models\Pet;
+use App\Models\TempProductImage;
+use App\Models\VerificationImage;
+use App\Models\Verification;
+use Illuminate\Support\Facades\File;
+use Intervention\Image\ImageManager;
+use Intervention\Image\Drivers\Gd\Driver;
 
 class AdoptController extends Controller
 {
@@ -94,11 +102,136 @@ class AdoptController extends Controller
             $relatedPets = Pet::whereIn('id',$petArray)->get();
         }
 
-
+        $user = Auth::user();
+        $data['user'] = $user;
+        
         $data['pet'] = $pet;
         $data['relatedPets'] = $relatedPets;
 
 
         return view('frontend.pet',$data);
+    }
+
+    public function verify() {
+
+        // if user is not logged in
+        if (Auth::check() == false) {
+
+            if (!session()->has('url.intended')) {
+
+                session(['url.intended' => url()->current()]);
+
+            }
+            return redirect()->route('account.login');
+        }
+    
+        session()->forget('url.intended');
+
+
+        return view('frontend.verification');
+    }
+
+    public function processVerify(Request $request) {
+
+        // Applying validation rules
+
+        $validator = Validator::make(request()->all(), [
+            'full_name' =>'required|min:3',
+            'email' =>'required|email',
+            'age' =>'required',
+            // 'DOB' =>'required',
+            'address' =>'required|min:10',
+            'city' =>'required',
+            'province' =>'required',
+            'zip' =>'required',
+            'mobile' =>'required',
+            'father' =>'required',
+            'document' =>'required'
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+               'status' => false,
+               'message' => 'Please fix the errors',
+               'errors' => $validator->errors()
+            ]);
+        }
+
+        // storing data in verification table
+
+        $user = Auth::user();
+
+        $verify = new Verification;
+        $verify->user_id = $user->id;
+        $verify->name = $request->full_name;
+        $verify->province = $request->province;
+        $verify->document_type = $request->document;
+        $verify->father_spouse = $request->father;
+
+        $verify->email = $request->email;
+        $verify->mobile = $request->mobile;
+        $verify->age = $request->age;
+        $verify->address = $request->address;
+        $verify->city = $request->city;
+        $verify->zip = $request->zip;
+        $verify->save();
+
+        // Update user status
+        $user->status = 'in progress';
+        $user->save();
+
+        //Save Gallery Pictures
+        if(!empty($request->image_array)) {
+            foreach ($request->image_array as $temp_image_id) {
+
+                $tempImageInfo = TempProductImage::find($temp_image_id);
+                $extArray = explode('.',$tempImageInfo->name);
+                $ext = last($extArray); //like jpg,gif,png etc
+
+                //DB store
+                $verifyImage = new VerificationImage();
+                $verifyImage->verification_id = $verify->id;
+                $verifyImage->image = 'NULL';
+                $verifyImage->save();
+
+                $imageName = $verify->id.'-'.$verifyImage->id.'-'.time().'.'.$ext;
+                // product_id = 4; $product_image_id =1
+                // 4-1-12231.jpg/png
+                $verifyImage->image=$imageName;
+                $verifyImage->save();
+
+                // Generate Product Thumbnails
+
+                // Large Image
+                $sourcePath = public_path().'/temp/'.$tempImageInfo->name;
+                $destPath = public_path().'/uploads/verify/'.$imageName;
+                $manager = new ImageManager(Driver::class);
+                $image = $manager->read($sourcePath);
+                $image->scale(1400, 1200);
+                $image->save($destPath);
+
+                // //Small Image
+                // $destPath = public_path().'/uploads/product/small/'.$imageName;
+                // $manager = new ImageManager(Driver::class);
+                // $image = $manager->read($sourcePath);
+                // $image->scale(300,300);
+                // $image->save($destPath);
+            }
+        }
+
+        session()->flash('success', 'You have successfully filled the form');
+
+
+        return response()->json([
+            'status' => true,
+            'verifyId' => $verify->id,
+            'message' => 'Verification form saved successfully',
+        ]);
+
+    }
+
+
+    public function thankyou() {
+        return view('frontend.greets');
     }
 }

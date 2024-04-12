@@ -1,5 +1,17 @@
 @extends('frontend.layouts.app')
-
+<style>
+.title {
+    background-color: white; 
+    border: 1px solid #ccc; 
+    border-radius: 10px; 
+    padding-left: 420px; 
+    padding-right: 420px;
+    padding-top: 10px; 
+    padding-bottom: 10px; 
+    display: inline-block; 
+    margin: 0; 
+}
+</style>
 @section('content')
     <section class="section-5 pt-3 pb-3 mb-3 bg-white">
         <div class="container">

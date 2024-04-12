@@ -17,6 +17,7 @@ use App\Http\Controllers\admin\PetImageController;
 use App\Http\Controllers\admin\PetController;
 use App\Http\Controllers\admin\ShippingController;
 use App\Http\Controllers\admin\OrderController;
+use App\Http\Controllers\admin\VerificationListController;
 
 
 use App\Http\Controllers\FrontController;
@@ -63,6 +64,9 @@ Route::post('/add-to-favouritelist',[FrontController::class,'addToFavouritelist'
 
 Route::get('/adoption/{categorySlug?}',[AdoptController::class,'index'])->name('frontend.adoption');
 Route::get('/pet/{slug}',[AdoptController::class,'pet'])->name('frontend.pet');
+Route::get('/verification',[AdoptController::class,'verify'])->name('frontend.verification');
+Route::post('/process-verification',[AdoptController::class,'processVerify'])->name('frontend.processVerify');
+Route::get('/greets',[CartController::class,'thankyou'])->name('frontend.greets');
 
 
 
@@ -198,6 +202,8 @@ Route::group(['prefix'=>'admin'],function(){
         Route::post('/order/change-status/{id}', [OrderController::class, 'changeOrderStatus'])->name('orders.changeOrderStatus');
         Route::post('/order/send-email/{id}', [OrderController::class, 'sendInvoiceEmail'])->name('orders.sendInvoiceEmail');
 
+        // Verification Routes
+        Route::get('/verifications', [VerificationListController::class, 'index'])->name('verifications.index');
 
         //temp-images.create
         Route::post('/upload-temp-product-image', [TempProductImagesController::class, 'create'])->name('temp-product-images.create');
