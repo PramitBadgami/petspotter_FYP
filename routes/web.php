@@ -45,7 +45,7 @@ use Illuminate\Http\Request;
 // });
 
 // Route::get('/test', function () {
-//     orderEmail(17);
+//     verifyEmail(11);
 // });
 
 Route::get('/',[FrontController::class,'index'])->name('frontend.home');
@@ -88,6 +88,7 @@ Route::group(['prefix'=>'account'],function(){
 
     Route::group(['middleware' => 'auth'],function(){
         Route::get('/profile',[AuthController::class,'profile'])->name('account.profile');
+        Route::post('/update-profile',[AuthController::class,'updateProfile'])->name('account.updateProfile');
         Route::get('/my-orders',[AuthController::class,'orders'])->name('account.orders');
         Route::get('/my-wishlist',[AuthController::class,'wishlist'])->name('account.wishlist');
         Route::post('/remove-product-from-wishlist',[AuthController::class,'removeProductFromWishList'])->name('account.removeProductFromWishList');

@@ -1,6 +1,7 @@
 <?php
 
 use App\Mail\OrderEmail;
+use App\Mail\VerifyEmail;
 use App\Models\ProductCategory;
 use App\Models\PetCategory;
 use App\Models\ProductImage;
@@ -8,6 +9,7 @@ use App\Models\PetImage;
 use App\Models\VerificationImage;
 use App\Models\Order;
 use App\Models\Country;
+use App\Models\Verification;
 use Illuminate\Support\Facades\Mail;
 
 function getCategories(){
@@ -61,6 +63,18 @@ function orderEmail($orderId, $userType="customer"){
     ];
 
     Mail::to($email)->send(new OrderEmail($mailData));
+}
+
+function verifyEmail($verificationId) {
+    $verification = Verification::with('user')->where('id',$verificationId)->first();
+
+    $mailData = [
+        'subject' => "Youe verification status has been updated!!!",
+        'verification' => $verification,
+       
+    ];
+    
+    Mail::to($verification->email)->send(new VerifyEmail($mailData));
 }
 
 function getCountryInfo($id){

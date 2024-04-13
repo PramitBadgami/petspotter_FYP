@@ -1,6 +1,18 @@
 @extends('frontend.layouts.app')
 
 @section('content')
+<style>
+    /* #user-details {
+        position: fixed;
+        top: calc(100vh - 280px); 
+        right: 25px;
+        z-index: 1000; 
+        max-width: 450px;
+    } */
+
+
+</style>
+
 <section class="section-5 pt-3 pb-3 mb-3 bg-white">
     <div class="container">
         <div class="light-font">
@@ -173,61 +185,22 @@
                     <div class="sub-title">
                         <h2>Order Summery</h3>
                     </div>                    
-                    <div class="card cart-summery">
-                        <div class="card-body">
-                            <div class="d-flex justify-content-between pb-2">
-                                <div class="h6">Product Name Goes Here X 1</div>
-                                <div class="h6">$100</div>
-                            </div>
-                            <div class="d-flex justify-content-between pb-2">
-                                <div class="h6">Product Name Goes Here X 1</div>
-                                <div class="h6">$100</div>
-                            </div>
-                            <div class="d-flex justify-content-between pb-2">
-                                <div class="h6">Product Name Goes Here X 1</div>
-                                <div class="h6">$100</div>
-                            </div>
-                            <div class="d-flex justify-content-between pb-2">
-                                <div class="h6">Product Name Goes Here X 1</div>
-                                <div class="h6">$100</div>
-                            </div>
-                            <div class="d-flex justify-content-between summery-end">
-                                <div class="h6"><strong>Subtotal</strong></div>
-                                <div class="h6"><strong>$400</strong></div>
-                            </div>
-                            <div class="d-flex justify-content-between mt-2">
-                                <div class="h6"><strong>Shipping</strong></div>
-                                <div class="h6"><strong>$20</strong></div>
-                            </div>
-                            <div class="d-flex justify-content-between mt-2 summery-end">
-                                <div class="h5"><strong>Total</strong></div>
-                                <div class="h5"><strong>$420</strong></div>
-                            </div>                            
-                        </div>
-                    </div>   
                     
-                    <div class="card payment-form ">                        
-                        <h3 class="card-title h5 mb-3">Payment Details</h3>
-                        <div class="card-body p-0">
-                            <!-- <div class="mb-3">
-                                <label for="card_number" class="mb-2">Card Number</label>
-                                <input type="text" name="card_number" id="card_number" placeholder="Valid Card Number" class="form-control">
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <label for="expiry_date" class="mb-2">Expiry Date</label>
-                                    <input type="text" name="expiry_date" id="expiry_date" placeholder="MM/YYYY" class="form-control">
-                                </div>
-                                <div class="col-md-6">
-                                    <label for="expiry_date" class="mb-2">CVV Code</label>
-                                    <input type="text" name="expiry_date" id="expiry_date" placeholder="123" class="form-control">
-                                </div> -->
-                            </div>
-                            <div class="pt-4">
-                                <!-- <a href="#" class="btn-dark btn btn-block w-100">Submit</a> -->
-                                
-                            </div>
-                        </div>                        
+                        <div class="alert alert-primary" role="alert"  id="user-details">
+                            <h5 class="h5 alert-heading"><b>Required document/personal details for verification</b></h5>
+                            
+                            <hr>
+                            
+                            <ul>
+                                <li><b>1. </b> Copy of citizenship</li>
+                                <li><b>2. </b> Address</li>
+                                <li><b>3. </b> Email Address</li>
+                                <li><b>4. </b> Mobile Number</li>
+                            </ul>
+                        </div>
+                       
+                    
+                                            
                     </div>
 
                             

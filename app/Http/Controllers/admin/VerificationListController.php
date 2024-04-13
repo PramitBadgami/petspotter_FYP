@@ -60,6 +60,10 @@ class VerificationListController extends Controller
         $verification = Verification::findOrFail($id);
         $verification->user->status = $request->status;
         $verification->user->save();
+
+        // send verification email
+        verifyEmail($verification->id);
+
         return response()->json(['success' => true]);
     }
 }

@@ -196,7 +196,7 @@
                                 @elseif ($verification->user->status== "Verified")
                                     <div class="h5"><b>User Status:</b><span class="text-success"> Verified</span></div>
                                 @else
-                                    <span class="text-danger"> Rejected</span></div>
+                                <div class="h5"><b>User Status:</b><span class="text-danger"> Rejected</span></div>
                                 @endif
                             </div>                
                         </div>
@@ -235,11 +235,19 @@
         var verificationId = {{ $verification->id }};
         $.ajax({
             url: "{{ route('verifications.updateUserStatus', ['id' => $verification->id]) }}",
-            type: 'PUT', // Use PUT method instead of POST
+            type: 'PUT', 
             data: { status: status },
             success: function(response) {
                 // Reload the page or update UI as needed
                 location.reload();
+
+                if (status === 'Verified') {
+                    alert('User successfully verified!');
+                    
+                } else if (status === 'Rejected') {
+                    
+                    alert('User successfully rejected!');
+                }
             },
             error: function(xhr, status, error) {
                 console.error(error);

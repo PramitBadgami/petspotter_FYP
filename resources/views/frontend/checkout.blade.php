@@ -154,7 +154,7 @@
                     <div class="card payment-form ">        
                         
                     <h3 class="card-title h5 mb-3">Payment Method</h3>
-                        <div class="">
+                        <!-- <div class="">
                             <input checked type="radio" name="payment_method" value="cod" id="payment_method_one">
                             <label for="payment_method_one" class="form-check-label">COD</label>
                         </div>
@@ -180,10 +180,13 @@
                                 </div>
                             </div>
                             
-                        </div>   
+                         </div>    -->
+                        <div class="alert alert-info" role="alert">
+                        <strong>Please note:</strong> Our system only supports cash on delivery for now.
+                        </div>
                         <div class="pt-4">
                                 <!-- <a href="#" class="btn-dark btn btn-block w-100">Pay Now</a> -->
-                                <button type="submit" class="btn-dark btn btn-block w-100">Pay Now</button>
+                                <button type="submit" class="btn-dark btn btn-block w-100">Place Order</button>
                             </div>                     
                     </div>
 
@@ -200,17 +203,17 @@
 @section('customJs')
 <script>
 
-    $("#payment_method_one").click(function(){
-        if ($(this).is(":checked") == true) {
-            $("#card-payment-form").addClass('d-none');
-        }
-    });
+    // $("#payment_method_one").click(function(){
+    //     if ($(this).is(":checked") == true) {
+    //         $("#card-payment-form").addClass('d-none');
+    //     }
+    // });
 
-    $("#payment_method_two").click(function(){
-        if ($(this).is(":checked") == true) {
-            $("#card-payment-form").removeClass('d-none');
-        }
-    });
+    // $("#payment_method_two").click(function(){
+    //     if ($(this).is(":checked") == true) {
+    //         $("#card-payment-form").removeClass('d-none');
+    //     }
+    // });
 
     $("#orderForm").submit(function(event){
         event.preventDefault();

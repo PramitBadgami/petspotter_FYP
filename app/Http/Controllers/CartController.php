@@ -248,7 +248,7 @@ class CartController extends Controller
 
         // storing data in orders table
 
-        if ($request->payment_method == 'cod') {
+        // if ($request->payment_method == 'cod') {
 
             $shipping = 0;
             $subTotal = Cart::subtotal(2,'.','');
@@ -333,9 +333,9 @@ class CartController extends Controller
             ]);
             
 
-        } else {
-            //
-        }
+        // } else {
+        //     //
+        // }
     }
 
     public function thankyou($id) {
