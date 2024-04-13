@@ -5,6 +5,7 @@ use App\Models\ProductCategory;
 use App\Models\PetCategory;
 use App\Models\ProductImage;
 use App\Models\PetImage;
+use App\Models\VerificationImage;
 use App\Models\Order;
 use App\Models\Country;
 use Illuminate\Support\Facades\Mail;
@@ -36,6 +37,10 @@ function getProductImage($productId){
 
 function getPetImage($petId){
     return PetImage::where('pet_id',$petId)->first();
+}
+
+function getVerificationImage($verificationId){
+    return VerificationImage::where('verification_id',$verificationId)->first();
 }
 
 function orderEmail($orderId, $userType="customer"){

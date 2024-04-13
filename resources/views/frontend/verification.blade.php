@@ -5,9 +5,9 @@
     <div class="container">
         <div class="light-font">
             <ol class="breadcrumb primary-color mb-0">
-                <li class="breadcrumb-item"><a class="white-text" href="#">Home</a></li>
-                <li class="breadcrumb-item"><a class="white-text" href="#">Shop</a></li>
-                <li class="breadcrumb-item">Checkout</li>
+                <li class="breadcrumb-item"><a class="white-text" href="{{ route('frontend.home') }}">Home</a></li>
+                <!-- <li class="breadcrumb-item"><a class="white-text" href="#">Shop</a></li> -->
+                <li class="breadcrumb-item">Verification</li>
             </ol>
         </div>
     </div>
@@ -164,7 +164,7 @@
                             <div class="row" id="document-gallery">
 
                             </div>
-
+                            <button type="submit" class="btn-dark btn btn-block w-25">Submit</button>
                             </div>
                         </div>
                     </div>
@@ -225,7 +225,7 @@
                             </div>
                             <div class="pt-4">
                                 <!-- <a href="#" class="btn-dark btn btn-block w-100">Submit</a> -->
-                                <button type="submit" class="btn-dark btn btn-block w-100">Submit</button>
+                                
                             </div>
                         </div>                        
                     </div>

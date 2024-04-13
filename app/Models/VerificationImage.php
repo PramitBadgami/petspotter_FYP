@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class VerificationImage extends Model
 {
     use HasFactory;
+    
     public function verification()
     {
         return $this->belongsTo(Verification::class);

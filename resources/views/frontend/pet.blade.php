@@ -50,14 +50,28 @@
                     
                     @if (Auth::check())
                         @if ($user->status == 'Unverified')
+                        <div class="alert alert-info alert-dismissible fade show" role="alert">
+                                <strong>Hello Adopters!!</strong> You need to verify before adopting a pet.
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
                             <a href="{{ route('frontend.verification') }}" class="btn btn-dark"><i class="fa fa-check-circle"></i> &nbsp;VERIFY</a>
                         @elseif ($user->status == 'In Progress')
                         <div class="alert alert-primary" role="alert">
                             <center>Your verification form is currently being reviewed.</center>
                         </div>
+                        
                         @elseif ($user->status == 'Verified')
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                You are now verified, you can adopt any pet.
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
                             <a href="{{ route('frontend.verification') }}" class="btn btn-dark"><i class="fa fa-check-circle"></i> &nbsp;Adopt</a>
+                        
                         @else
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            Your verification form was rejected for some reason. Please check in all the details before submitting the form.
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
                             <a href="{{ route('frontend.verification') }}" class="btn btn-dark"><i class="fa fa-check-circle"></i> &nbsp;VERIFY</a>
                         @endif
                     @else

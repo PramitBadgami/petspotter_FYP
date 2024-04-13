@@ -24,7 +24,7 @@
 
                     <div class="card-header">
                         <div class="card-title">
-                            <button type="button" onclick="window.location.href='{{ route("orders.index") }}'" class="btn btn-default btn-sm">Reset</button>
+                            <button type="button" onclick="window.location.href='{{ route("verifications.index") }}'" class="btn btn-default btn-sm">Reset</button>
                         </div>
                         <div class="card-tools">
                             <div class="input-group input-group" style="width: 250px;">
@@ -58,10 +58,11 @@
                             @if ($verifications->isNotEmpty())
                                 @foreach ($verifications as $verification)
                                 <tr>
-                                    <td><a href="#">{{ $verification->id }}</a></td>
+                                    <td><a href="{{ route('verifications.detail',$verification->id) }}">{{ $verification->id }}</a></td>
                                     <td>{{ $verification->name }}</td>
                                     <td>{{ $verification->email }}</td>
                                     <td>{{ $verification->mobile }}</td>
+                                    
                                     
                                     <td>
 
@@ -83,7 +84,7 @@
                                     </td>
                                     <td>{{ $verification->province }}</td>
                                     <td>
-                                    <button type="button" class="btn btn-outline-secondary"><i class="fa fa-eye"></i> View</button>
+                                    <a href="{{ route('verifications.detail',$verification->id) }}"><button type="button" class="btn btn-outline-secondary"><i class="fa fa-eye"></i> View</button></a>
                                     </td>
                                    
                                     

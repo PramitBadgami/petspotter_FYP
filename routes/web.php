@@ -204,7 +204,9 @@ Route::group(['prefix'=>'admin'],function(){
 
         // Verification Routes
         Route::get('/verifications', [VerificationListController::class, 'index'])->name('verifications.index');
-
+        Route::get('/verifications/{id}', [VerificationListController::class, 'detail'])->name('verifications.detail');
+        Route::put('verifications/updateUserStatus/{id}', [VerificationListController::class, 'updateUserStatus'])->name('verifications.updateUserStatus');
+        
         //temp-images.create
         Route::post('/upload-temp-product-image', [TempProductImagesController::class, 'create'])->name('temp-product-images.create');
         Route::post('/upload-temp-pet-image', [TempPetImagesController::class, 'create'])->name('temp-pet-images.create');
