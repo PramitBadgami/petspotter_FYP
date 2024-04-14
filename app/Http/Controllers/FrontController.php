@@ -124,4 +124,8 @@ class FrontController extends Controller
             'message' => '<div class="alert alert-success"><strong>"'.$pet->name.'"</strong> successfully added in your favourites list</div>'
         ]);
     }
+
+    public function aboutUs(){
+        return view('frontend.about');
+    }
 }

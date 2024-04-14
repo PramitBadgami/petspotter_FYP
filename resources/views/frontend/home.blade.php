@@ -181,7 +181,7 @@
 <section class="section-4 pt-5">
     <div class="container">
         <div class="section-title">
-            <h2>Latest Pets</h2>
+            <h2>Newest Pets</h2>
         </div>    
         <div class="row pb-3">
         @if ($latestpets->isNotEmpty())

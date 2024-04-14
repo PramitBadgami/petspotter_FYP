@@ -119,15 +119,15 @@
 								</a>
 							</li> -->
 							<li class="nav-item">
-								<a href="users.html" class="nav-link">
+								<a href="{{route('users.index')}}" class="nav-link">
 									<i class="nav-icon  fas fa-users"></i>
 									<p>Users</p>
 								</a>
 							</li>
 							<li class="nav-item">
-								<a href="pages.html" class="nav-link">
-									<i class="nav-icon  far fa-file-alt"></i>
-									<p>Pages</p>
+								<a href="#" class="nav-link">
+									<i style="margin-left: 4px;" class='fas fa-hand-holding-heart'></i>
+									<p style="margin-left: 6px;">Donation</p>
 								</a>
 							</li>							
 						</ul>

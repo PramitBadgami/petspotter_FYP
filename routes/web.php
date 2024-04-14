@@ -18,6 +18,8 @@ use App\Http\Controllers\admin\PetController;
 use App\Http\Controllers\admin\ShippingController;
 use App\Http\Controllers\admin\OrderController;
 use App\Http\Controllers\admin\VerificationListController;
+use App\Http\Controllers\admin\UserController;
+use App\Http\Controllers\admin\SettingController;
 
 
 use App\Http\Controllers\FrontController;
@@ -61,6 +63,7 @@ Route::get('/thanks/{orderId}',[CartController::class,'thankyou'])->name('fronte
 Route::post('/get-order-summary',[CartController::class,'getOrderSummary'])->name('frontend.getOrderSummary');
 Route::post('/add-to-wishlist',[FrontController::class,'addToWishlist'])->name('frontend.addToWishlist');
 Route::post('/add-to-favouritelist',[FrontController::class,'addToFavouritelist'])->name('frontend.addToFavouritelist');
+Route::get('/about-us',[FrontController::class,'aboutUs'])->name('frontend.about');
 
 Route::get('/adoption/{categorySlug?}',[AdoptController::class,'index'])->name('frontend.adoption');
 Route::get('/pet/{slug}',[AdoptController::class,'pet'])->name('frontend.pet');
@@ -89,6 +92,9 @@ Route::group(['prefix'=>'account'],function(){
     Route::group(['middleware' => 'auth'],function(){
         Route::get('/profile',[AuthController::class,'profile'])->name('account.profile');
         Route::post('/update-profile',[AuthController::class,'updateProfile'])->name('account.updateProfile');
+        Route::get('/change-password',[AuthController::class,'showChangePasswordForm'])->name('account.changePassword');
+        Route::post('/process-change-password',[AuthController::class,'changePassword'])->name('account.processChangePassword');
+
         Route::get('/my-orders',[AuthController::class,'orders'])->name('account.orders');
         Route::get('/my-wishlist',[AuthController::class,'wishlist'])->name('account.wishlist');
         Route::post('/remove-product-from-wishlist',[AuthController::class,'removeProductFromWishList'])->name('account.removeProductFromWishList');
@@ -208,10 +214,18 @@ Route::group(['prefix'=>'admin'],function(){
         Route::get('/verifications/{id}', [VerificationListController::class, 'detail'])->name('verifications.detail');
         Route::put('verifications/updateUserStatus/{id}', [VerificationListController::class, 'updateUserStatus'])->name('verifications.updateUserStatus');
         
+
+        // User Route
+        Route::get('/users', [UserController::class, 'index'])->name('users.index');
+
+
         //temp-images.create
         Route::post('/upload-temp-product-image', [TempProductImagesController::class, 'create'])->name('temp-product-images.create');
         Route::post('/upload-temp-pet-image', [TempPetImagesController::class, 'create'])->name('temp-pet-images.create');
 
+        // Serring Route
+        Route::get('/change-password', [SettingController::class, 'showChangePasswordForm'])->name('admin.showChangePasswordForm');
+        Route::post('/process-change-password', [SettingController::class, 'processChangePassword'])->name('admin.processChangePassword');
 
 
         //this route is returning the slug

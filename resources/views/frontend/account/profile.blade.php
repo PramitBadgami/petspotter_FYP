@@ -68,8 +68,8 @@
 
         $.ajax({
             url: '{{ route("account.updateProfile") }}',
-            type: 'POST',
-            data: $('this').serializeArray(),
+            type: 'post',
+            data: $(this).serializeArray(),
             dataType: 'json',
             success: function(response){
                 if(response.status == true) {
