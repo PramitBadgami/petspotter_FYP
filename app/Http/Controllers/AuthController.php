@@ -11,6 +11,7 @@ use App\Models\Order;
 use App\Models\Wishlist;
 use App\Models\Favouritelist;
 use App\Models\OrderItem;
+use App\Models\Adoption;
 use Gloudemans\Shoppingcart\Facades\Cart;
 
 class AuthController extends Controller
@@ -143,7 +144,7 @@ class AuthController extends Controller
         $data = [];
         $user = Auth::user();
         
-        $orders = Order::where('user_id', $user->id)->orderBy('created_at', 'DESC')->get();
+        $orders = Order::where('user_id', $user->id)->orderBy('created_at', 'DESC')->paginate(10);
 
         $data['orders'] = $orders;
         return view('frontend.account.order',$data);
@@ -269,5 +270,15 @@ class AuthController extends Controller
                 'errors' => $validator->errors()
             ]);
         }
+    }
+
+    public function adoptions() {
+
+        $user = Auth::user();
+
+        $adoptions = Adoption::with('pet')->where('user_id',$user->id)->orderBy('created_at', 'DESC')->paginate(4);
+
+        $data['adoptions'] = $adoptions;
+        return view('frontend.account.adoption',$data);
     }
 }

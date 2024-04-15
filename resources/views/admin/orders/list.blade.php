@@ -51,6 +51,7 @@
                                 <th>Status</th>
                                 <th>Amount</th>
                                 <th>Purchased Date</th>
+                                <th></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -76,6 +77,9 @@
                                     <td>Rs.{{ number_format($order->grand_total,2) }}</td>
                                     <td>
                                         {{ \Carbon\Carbon::parse($order->created_at)->format('d M, Y') }}
+                                    </td>
+                                    <td>
+                                    <a href="{{ route('orders.detail',$order->id) }}"><button type="button" class="btn btn-outline-secondary"><i class="fa fa-eye"></i> View</button></a>
                                     </td>
                                     
                                 </tr>

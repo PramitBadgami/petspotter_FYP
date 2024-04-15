@@ -50,6 +50,7 @@ class VerificationListController extends Controller
         // echo $verificationId;
 
         $verification = Verification::with('user')->where('id',$verificationId)->first();
+        
         return view('admin.verifications.detail',[
             'verification' => $verification
         ]);

@@ -6,7 +6,7 @@
         <div class="container-fluid my-2">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Verifications</h1>
+                    <h1>Adoptions</h1>
                 </div>
                 <div class="col-sm-6 text-right">
                 </div>
@@ -24,7 +24,7 @@
 
                     <div class="card-header">
                         <div class="card-title">
-                            <button type="button" onclick="window.location.href='{{ route("verifications.index") }}'" class="btn btn-default btn-sm">Reset</button>
+                            <button type="button" onclick="window.location.href='{{ route("adoptions.index") }}'" class="btn btn-default btn-sm">Reset</button>
                         </div>
                         <div class="card-tools">
                             <div class="input-group input-group" style="width: 250px;">
@@ -45,43 +45,56 @@
                         <thead>
                             <tr>
                                 <th width="60">Id</th>
+                                <th width="80"></th>
+                                <th>Pet Name</th>
+                                <th>Pet Age</th>
                                 <th>Users</th>
                                 <th>Email</th>
                                 <th>Phone</th>
-                                <th>Province</th>
-                                <th>Status</th>
+                                <th>Adoption Status</th>
                                 <th>View</th>
                             </tr>
                         </thead>
                         <tbody>
                             <!-- Showing the dynamic categories -->
-                            @if ($verifications->isNotEmpty())
-                                @foreach ($verifications as $verification)
+                            @if ($adoptions->isNotEmpty())
+                                @foreach ($adoptions as $adoption)
+                                @php
+                                    $petImage = $adoption->pet->pet_images->first();
+                                @endphp
                                 <tr>
-                                    <td><a href="{{ route('verifications.detail',$verification->id) }}">{{ $verification->id }}</a></td>
-                                    <td>{{ $verification->name }}</td>
-                                    <td>{{ $verification->email }}</td>
-                                    <td>{{ $verification->mobile }}</td>
-                                    
-                                    
-                                    
-                                    <td>{{ $verification->province }}</td>
+                                <td><a href="{{ route('adoptions.detail',$adoption->id) }}">{{ $adoption->id }}</a></td>
                                     <td>
-
-                                        @if ($verification->user->status == "Unverified")
-                                            <span class="badge bg-danger">Unverified</span>
-                                        @elseif ($verification->user->status == "In Progress")
-                                            <span class="badge bg-info">In Progress</span>
-                                        @elseif ($verification->user->status == "Verified")
-                                            <span class="badge bg-success">Verified</span>
+                                        @if (!empty($petImage->image))
+                                        <img src="{{ asset('uploads/pet/small/'.$petImage->image) }}" class="img-thumbnail" width="50" >
                                         @else
-                                            <span class="badge bg-danger">Rejected</span>
+                                        <img src="{{ asset('admin-assets/img/default-150x150.png') }}"  class="img-thumbnail" width="50">
                                         @endif
                                     
-                                   
+                                    </td>
+                                    <td>{{ $adoption->pet->name }}</td>
+                                    <td>{{ $adoption->pet->age }}</td>
+
+                                    <td>{{ $adoption->user->name }}</td>
+                                    <td>{{ $adoption->user->email }}</td>
+                                    <td>{{ $adoption->user->phone }}</td>
+
+                                    
+
+                                    <td>
+
+                                        @if ( $adoption->pet->adoption_status == 'Not Adopted')
+                                            <span class="badge bg-danger">Not Adopted</span>
+                                        @elseif ($adoption->pet->adoption_status == 'In Progress')
+                                            <span class="badge bg-info">In Progress</span>
+                                        @elseif ($adoption->pet->adoption_status == 'Adopted')
+                                            <span class="badge bg-success">Adopted</span>
+                                        @endif
+                                    
+
                                     </td>
                                     <td>
-                                    <a href="{{ route('verifications.detail',$verification->id) }}"><button type="button" class="btn btn-outline-secondary"><i class="fa fa-eye"></i> View</button></a>
+                                    <a href="{{ route('adoptions.detail',$adoption->id) }}"><button type="button" class="btn btn-outline-secondary"><i class="fa fa-eye"></i> View</button></a>
                                     </td>
                                    
                                     
@@ -97,7 +110,7 @@
                     </table>										
                 </div>
                 <div class="card-footer clearfix">
-                    {{ $verifications->links('pagination::bootstrap-5')}}
+                    {{ $adoptions->links()}}
                 </div>
             </div>
         </div>

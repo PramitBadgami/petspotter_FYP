@@ -20,6 +20,7 @@ use App\Http\Controllers\admin\OrderController;
 use App\Http\Controllers\admin\VerificationListController;
 use App\Http\Controllers\admin\UserController;
 use App\Http\Controllers\admin\SettingController;
+use App\Http\Controllers\admin\AdoptionListController;
 
 
 use App\Http\Controllers\FrontController;
@@ -107,6 +108,7 @@ Route::group(['prefix'=>'account'],function(){
         Route::get('/order-detail/{orderId}',[AuthController::class,'orderDetail'])->name('account.orderDetail');
         Route::get('/logout',[AuthController::class,'logout'])->name('account.logout');
 
+        Route::get('/my-adoptions',[AuthController::class,'adoptions'])->name('account.adoption');
         
     });
 });
@@ -218,6 +220,10 @@ Route::group(['prefix'=>'admin'],function(){
         Route::get('/verifications/{id}', [VerificationListController::class, 'detail'])->name('verifications.detail');
         Route::put('verifications/updateUserStatus/{id}', [VerificationListController::class, 'updateUserStatus'])->name('verifications.updateUserStatus');
         
+        // Adoptions Routes
+        Route::get('/adoptions', [AdoptionListController::class, 'index'])->name('adoptions.index');
+        Route::get('/adoptions/{id}', [AdoptionListController::class, 'detail'])->name('adoptions.detail');
+        Route::post('/adoption/change-status/{id}', [AdoptionListController::class, 'changeAdoptionStatus'])->name('adoptions.changeAdoptionStatus');
 
         // User Route
         Route::get('/users', [UserController::class, 'index'])->name('users.index');
@@ -227,7 +233,7 @@ Route::group(['prefix'=>'admin'],function(){
         Route::post('/upload-temp-product-image', [TempProductImagesController::class, 'create'])->name('temp-product-images.create');
         Route::post('/upload-temp-pet-image', [TempPetImagesController::class, 'create'])->name('temp-pet-images.create');
 
-        // Serring Route
+        // Setting Route
         Route::get('/change-password', [SettingController::class, 'showChangePasswordForm'])->name('admin.showChangePasswordForm');
         Route::post('/process-change-password', [SettingController::class, 'processChangePassword'])->name('admin.processChangePassword');
 
