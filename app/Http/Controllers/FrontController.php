@@ -16,10 +16,12 @@ class FrontController extends Controller
         $pets = Pet::where('is_featured','Yes')
                     ->orderBy('id','DESC')
                     ->take(8)
+                    ->where('adoption_status', 'Not Adopted')
                     ->where('status',1)->get();
         $data['featuredPets']= $pets;
 
         $latestpets = Pet::orderBy('id','DESC')
+                    ->where('adoption_status', 'Not Adopted')
                     ->where('status',1)
                     ->take(8)
                     ->get();
@@ -94,7 +96,7 @@ class FrontController extends Controller
         }
 
         Favouritelist::updateOrCreate(
-            // used as where clause (to check that item is already in the wishlist)
+            // used as where clause (to check that pet is already in the favourites list)
             [
                 'user_id' => Auth::user()->id,
                 'pet_id' => $request->id,

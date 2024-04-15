@@ -28,7 +28,7 @@ class AdoptController extends Controller
         $breeds = Breed::orderBy('breed','ASC')->where('status',1)->get();
 
         //$pets = Pet::orderBy('id','DESC')->where('status',1)->get();
-        $pets = Pet::where('status',1);
+        $pets = Pet::where('status',1)->where('adoption_status', 'Not Adopted');
         
         
 
@@ -99,7 +99,7 @@ class AdoptController extends Controller
         // fetch related pets
         if($pet->related_pets != '') {
             $petArray = explode(',',$pet->related_pets);
-            $relatedPets = Pet::whereIn('id',$petArray)->get();
+            $relatedPets = Pet::whereIn('id',$petArray)->where('adoption_status', 'Not Adopted')->get();
         }
 
         $user = Auth::user();

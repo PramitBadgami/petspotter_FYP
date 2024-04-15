@@ -39,7 +39,7 @@
 
                         @if ($favouritelists->isNotEmpty())
                         @foreach ($favouritelists as $favouritelist)
-                        
+                        @if($favouritelist->pet->adoption_status == 'Not Adopted')
                         <div class="col-md-4">
                             <div class="card product-card">
                                 <div class="product-image position-relative">
@@ -70,6 +70,7 @@
                                 <!-- </div> -->
                             </div>                                               
                         </div>  
+                        @endif
 
                         @endforeach
                         @else

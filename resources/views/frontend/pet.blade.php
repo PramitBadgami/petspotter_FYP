@@ -19,16 +19,7 @@
         <div class="col-md-7">
                 <div class="bg-light ">
                     <center><h1>Name: {{ $pet->name }}</h1></center>
-                    <!-- <div class="d-flex mb-3">
-                        <div class="text-primary mr-2">
-                            <small class="fas fa-star"></small>
-                            <small class="fas fa-star"></small>
-                            <small class="fas fa-star"></small>
-                            <small class="fas fa-star-half-alt"></small>
-                            <small class="far fa-star"></small>
-                        </div>
-                        <small class="pt-1">(99 Reviews)</small>
-                    </div> -->
+                    
                     <hr>
                     <center><h2 class="age mb-4">Age: {{ $pet->age }}</h2></center>
                     <hr>
@@ -65,7 +56,7 @@
                                 You are now verified, you can adopt any pet.
                             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                         </div>
-                            <a href="{{ route('frontend.verification') }}" class="btn btn-dark"><i class="fa fa-check-circle"></i> &nbsp;Adopt</a>
+                            <a href="{{ route('frontend.adopt', ['slug' => $pet->slug]) }}" class="btn btn-dark"><i class="fa fa-check-circle"></i> &nbsp;Adopt</a>
                         
                         @else
                         <div class="alert alert-danger alert-dismissible fade show" role="alert">

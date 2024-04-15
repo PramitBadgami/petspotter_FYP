@@ -11,4 +11,9 @@ class Pet extends Model
     {
         return $this->hasMany(PetImage::class);
     }
+
+    public function adoptions()
+    {
+        return $this->hasMany(Adoption::class);
+    }
 }

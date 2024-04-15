@@ -183,7 +183,7 @@
                 </div>
                 <div class="col-md-4">
                     <div class="sub-title">
-                        <h2>Order Summery</h3>
+                        <h2>Verification Details</h3>
                     </div>                    
                     
                         <div class="alert alert-primary" role="alert"  id="user-details">

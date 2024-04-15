@@ -27,6 +27,7 @@ use App\Http\Controllers\ShopController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AdoptController;
+use App\Http\Controllers\AdoptionController;
 
 
 use Illuminate\Http\Request;
@@ -71,6 +72,9 @@ Route::get('/verification',[AdoptController::class,'verify'])->name('frontend.ve
 Route::post('/process-verification',[AdoptController::class,'processVerify'])->name('frontend.processVerify');
 Route::get('/greets',[CartController::class,'thankyou'])->name('frontend.greets');
 
+Route::get('/adopt/{slug}',[AdoptionController::class,'adopt'])->name('frontend.adopt');
+Route::post('/process-adopt',[AdoptionController::class,'processAdopt'])->name('frontend.processAdopt');
+Route::get('/success',[AdoptionController::class,'success'])->name('frontend.success');
 
 
 // Route::get('/register',[AuthController::class,'register'])->name('account.register');

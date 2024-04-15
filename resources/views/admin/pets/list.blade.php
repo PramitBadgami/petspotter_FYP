@@ -50,9 +50,9 @@
                                 <th>Pet</th>
                                 <th>Age</th>
                                 <th>Gender</th>
-                                <!-- <th>SKU</th> -->
-                                <th width="100">Status</th>
-                                <th width="100">Action</th>
+                                <th>Adoption Status</th>
+                                <th>Status</th>
+                                <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -74,7 +74,15 @@
                                     <td><a href="#">{{ $pet->name }}</a></td>
                                     <td>{{ $pet->age }}</td>
                                     <td>{{ $pet->gender }}</td>
-                                    <!-- <td>{{ $pet->sku }}</td>									 -->
+                                    <td>
+                                        @if ($pet->adoption_status == "Not Adopted")
+                                            <span class="badge bg-danger">Not Adopted</span>
+                                        @elseif ($pet->adoption_status == "In Progress")
+                                            <span class="badge bg-info">In Progress</span>
+                                        @else
+                                            <span class="badge bg-success">Adopted</span>
+                                        @endif
+                                    </td>
                                     <td>
                                         @if ($pet->status == 1)
                                         <svg class="text-success-500 h-6 w-6 text-success" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
