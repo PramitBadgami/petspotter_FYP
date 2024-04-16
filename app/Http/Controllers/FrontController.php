@@ -130,4 +130,8 @@ class FrontController extends Controller
     public function aboutUs(){
         return view('frontend.about');
     }
+
+    public function contactUs(){
+        return view('frontend.contact-us');
+    }
 }

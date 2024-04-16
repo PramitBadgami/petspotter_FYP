@@ -229,7 +229,8 @@
                 dataType: 'json',
                 success: function(response) {
                     var errors = response.errors;
-
+                    $('button[type="submit"]').prop('disabled', false);
+                    
                     if (response.status == false) {
 
                         if (errors.full_name) {

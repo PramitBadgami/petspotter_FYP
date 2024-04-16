@@ -17,7 +17,7 @@ class VerificationListController extends Controller
         
 
         
-        $verifications = Verification::with('user')->latest('created_at');
+        $verifications = Verification::with('user')->latest();
 
         if ($request->has('keyword')) {
             $keyword = $request->keyword;

@@ -13,7 +13,7 @@ class AdoptionListController extends Controller
         // $search = $request->query('search');
 
         $adoptions = Adoption::with('user')
-                            ->with('pet');
+                            ->with('pet')->latest();
 
         if ($request->get('keyword') != '') {
             $adoptions = $adoptions->where(function ($query) use ($request) {
@@ -43,7 +43,25 @@ class AdoptionListController extends Controller
         ]);
     }
 
-    public function changeAdoptionStatus(Request $request){
+    public function changeAdoptionStatus(Request $request, $adoptionId){
+        // Find the adoption record
+        $adoption = Adoption::findOrFail($adoptionId);
         
+        // Update the adoption status in the associated pet record
+        $adoption->pet->update([
+            'adoption_status' => $request->status,
+            'adoption_date' => $request->adoption_date,
+        ]);
+
+        $message = 'Adopted status updated successfully';
+
+        session()->flash('success',$message);
+    
+        // You can return a success response or redirect back to the adoption detail page
+        return response()->json([
+            'status' => true,
+            'message' => 'Adopted status updated successfully'
+        ]);
     }
+    
 }

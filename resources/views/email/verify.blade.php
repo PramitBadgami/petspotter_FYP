@@ -7,8 +7,6 @@
 </head>
 <body>
 
-    
-
     @if($mailData['verification']->user->status == 'Verified')
     <h2>You have been verified successfully. Now you can adopt any pet as you please.</h2>
     @elseif($mailData['verification']->user->status == 'Rejected')

@@ -65,7 +65,7 @@
                                                 <td>{{ \Carbon\Carbon::parse($adoption->created_at)->format('d M, Y') }}</td>
                                                 <td>
                                                 @if ($adoption->pet->adoption_status == 'Not Adopted')
-                                                    <span class="badge bg-danger">Not Adopted</span>
+                                                    <span class="badge bg-danger">Rejected</span>
                                                 @elseif ($adoption->pet->adoption_status == 'In Progress')
                                                     <span class="badge bg-info">In Progress</span>
                                                 @elseif ($adoption->pet->adoption_status == 'Adopted')

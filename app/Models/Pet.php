@@ -7,6 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Pet extends Model
 {
+    protected $fillable = ['name','slug', 'description', 'short_description', 'related_pets', 'age', 'adoption_status', 'adoption_date', 'category_id ', 'breed_id', 'is_featured','gender', 'status'];
+
+
     public function pet_images()
     {
         return $this->hasMany(PetImage::class);
