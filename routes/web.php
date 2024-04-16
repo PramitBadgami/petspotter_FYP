@@ -67,6 +67,7 @@ Route::post('/add-to-wishlist',[FrontController::class,'addToWishlist'])->name('
 Route::post('/add-to-favouritelist',[FrontController::class,'addToFavouritelist'])->name('frontend.addToFavouritelist');
 Route::get('/about-us',[FrontController::class,'aboutUs'])->name('frontend.about');
 Route::get('/contact-us',[FrontController::class,'contactUs'])->name('frontend.contact-us');
+Route::post('/send-contact-email',[FrontController::class,'sendContactEmail'])->name('frontend.sendContactEmail');
 
 Route::get('/adoption/{categorySlug?}',[AdoptController::class,'index'])->name('frontend.adoption');
 Route::get('/pet/{slug}',[AdoptController::class,'pet'])->name('frontend.pet');

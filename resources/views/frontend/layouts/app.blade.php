@@ -239,10 +239,10 @@
 			<div class="col-md-4">
 				<div class="footer-card">
 					<h3>Get In Touch</h3>
-					<p>No dolore ipsum accusam no lorem. <br>
-					123 Street, Kathmandu, Nepal <br>
-					pramit@example.com <br>
-					000 000 0000</p>
+					<p>Pet Adoption and Pet Products Store. <br>
+					Putalisadak, Kathmandu, Nepal <br>
+					pramitbadgami2@gmail.com <br>
+					(+977) 9860567854</p>
 				</div>
 			</div>
 
