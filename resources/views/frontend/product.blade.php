@@ -16,7 +16,7 @@
 <section class="section-7 pt-3 mb-3">
     <div class="container">
         <div class="row ">
-            <div class="col-md-5">
+            <div class="col-md-5 left">
                 <div id="product-carousel" class="carousel slide" data-bs-ride="carousel">
                     <div class="carousel-inner bg-light">
                         

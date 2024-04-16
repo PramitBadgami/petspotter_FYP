@@ -104,7 +104,7 @@
 
                                     <a href="{{ route('frontend.pet',$pet->slug) }}" class="product-img">
                                     @if (!empty($petImage->image))
-                                        <img class="card-img-top" src="{{ asset('uploads/pet/small/'.$petImage->image) }}" style="object-fit: contain; object-position: center; width: 100%; height: 260px;" >
+                                        <img class="card-img-top" src="{{ asset('uploads/pet/small/'.$petImage->image) }}" style="object-fit: cover; object-position: center; width: 100%; height: 260px;" >
                                     @else
                                         <img class="card-img-top" src="{{ asset('admin-assets/img/default-150x150.png') }}" style="object-fit: contain; object-position: center; width: 100%; height: 260px; padding: 5px;">
                                     @endif

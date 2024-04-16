@@ -141,18 +141,18 @@
                         <a href="{{ route('frontend.pet',$relPets->slug) }}" class="product-img">
                             <!-- <img class="card-img-top" src="images/product-1.jpg" alt=""> -->
                             @if (!empty($petImage->image))
-                                <img class="card-img-top" src="{{ asset('uploads/pet/small/'.$petImage->image) }}" style="object-fit: contain; object-position: center; width: 100%; height: 260px;" >
+                                <img class="card-img-top" src="{{ asset('uploads/pet/small/'.$petImage->image) }}" style="object-fit: cover; object-position: center; width: 100%; height: 260px;" >
                             @else
                                 <img class="card-img-top" src="{{ asset('admin-assets/img/default-150x150.png') }}" style="object-fit: contain; object-position: center; width: 100%; height: 260px; padding: 5px;">
                             @endif
                         </a>
 
                         <a onclick="addToFavouriteList({{ $relPets->id }})" title="Add to favourites list" class="whishlist" href="javascript:void(0)"><i class="far fa-heart"></i></a>
-                        <div class="product-action">
+                        <!-- <div class="product-action">
                             <a class="btn btn-dark" href="{{ route('frontend.verification') }}">
                                 <i class="fa fa-check-circle"></i> Verify
                             </a>
-                        </div>
+                        </div> -->
                     </div>                        
                     <div class="card-body text-center mt-3">
                         <a class="h6 link" href="{{ route('frontend.pet',$relPets->slug) }}"><b>{{ $relPets->name }}</b></a>

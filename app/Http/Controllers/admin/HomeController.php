@@ -5,12 +5,54 @@ namespace App\Http\Controllers\admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Order;
+use App\Models\Product;
+use App\Models\Pet;
+use App\Models\Verification;
 use Illuminate\Support\Facades\Auth;
+use Carbon\Carbon;
 
 class HomeController extends Controller
 {
     public function index(){
 
+        $totalOrders = Order::where('status', '!=', 'cancelled')->count();
+        $totalProducts = Product::count();
+        $totalPets = Pet::count();
+        $totalAdoptedPets = Pet::where('adoption_status', '=', 'adopted')->count();
+        $totalUsers = User::where('role', 1)->count();
+        $totalVerifications = Verification::count();
+
+        $totalRevenue = Order::where('status', '!=', 'cancelled')->sum('grand_total');
+
+        // This month revenue
+        $startOfMonth = Carbon::now()->startOfMonth()->format('Y-m-d');
+        $currentDate = Carbon::now()->format('Y-m-d');
+
+        $revenueThisMonth = Order::where('status', '!=', 'cancelled')
+                            ->whereDate('created_at', '>=', $startOfMonth)
+                            ->whereDate('created_at', '<=', $currentDate)
+                            ->sum('grand_total');
+
+        // Last month revenue
+        $lastMonthStartDate = Carbon::now()->subMonth()->startOfMonth()->format('Y-m-d');
+        $lastMonthEndDate = Carbon::now()->subMonth()->endOfMonth()->format('Y-m-d');
+        $lastMonthName = Carbon::now()->subMonth()->startOfMonth()->format('M');
+
+        $revenueLastMonth = Order::where('status', '!=', 'cancelled')
+                            ->whereDate('created_at', '>=', $lastMonthStartDate)
+                            ->whereDate('created_at', '<=', $lastMonthEndDate)
+                            ->sum('grand_total');
+
+        // Last 30 days sale
+        $lastThirtyDayStartDate = Carbon::now()->subDays(30)->format('Y-m-d');
+
+        $revenueLastThirtyDays = Order::where('status', '!=', 'cancelled')
+                            ->whereDate('created_at', '>=', $lastThirtyDayStartDate)
+                            ->whereDate('created_at', '<=', $currentDate)
+                            ->sum('grand_total');
+        
+        // Graph One
         $users = User::selectRaw('MONTH(created_at) as month, COUNT(*) as count')
         ->whereYear('created_at', date('Y'))
         ->where('role', 1)
@@ -21,33 +63,6 @@ class HomeController extends Controller
         $labels = [];
         $data = [];
         $colors = ['#FF6384','#36A2EB','#FFCE56','#8BC34A','#FF5722','#009688','#795548','#9C27B0','#FF9800','#CDDC39','#607D88'];
-        
-        
-        // for ($i=1; $i <= 12; $i++) {
-        //     $month = date('F',mktime(0,0,0,$i,1));
-        //     $count = 0;
-        // }
-
-         // foreach ($users as $user) {
-        //     $count = 0; // Initialize count for each month
-        //     foreach (range(1, 12) as $i) { // Iterate over all 12 months
-        //         if ($user->month == $i) {
-        //             $count = $user->count;
-        //             break;
-        //         }
-        //     }
-
-        // for ($i = 1; $i <= 12; $i++) {
-        //     $month = date('F', mktime(0, 0, 0, $i, 1)); // Get month name
-        //     $count = 0; // Initialize count for the month
-    
-        //     // Check if data exists for the current month
-        //     foreach ($users as $user) {
-        //         if ($user->month == $i) {
-        //             $count = $user->count; // Update count if data exists for the month
-        //             break;
-        //         }
-        //     }
 
         for ($i = 1; $i <= 12; $i++) {
             $monthName = date('F', mktime(0, 0, 0, $i, 1)); // Get month name
@@ -60,13 +75,6 @@ class HomeController extends Controller
             $data[$user->month] = $user->count;
         }
 
-       
-            
-        //     $month = date('F', mktime(0, 0, 0, $user->month, 1));
-        //     array_push($labels,$month);
-        //     array_push($data,$count);
-        // }
-
         $datasets  = [
             [
                 'label' => 'Users',
@@ -75,11 +83,9 @@ class HomeController extends Controller
             ]
             ];
 
-        return view('admin.dashboard', compact('datasets', 'labels'));
+        return view('admin.dashboard',compact('totalOrders', 'datasets', 'labels', 'revenueLastThirtyDays', 'lastMonthName', 'totalVerifications',
+        'totalProducts', 'totalUsers', 'totalPets', 'totalAdoptedPets', 'totalRevenue', 'revenueThisMonth', 'revenueLastMonth'));
 
-        //$admin = Auth::guard('admin')->user();
-
-        //echo 'Welcome ' . $admin->name . ' <a href="' . route('admin.logout') . '">Logout</a>';
     }
 
     public function logout() {
