@@ -69,6 +69,12 @@ Route::get('/about-us',[FrontController::class,'aboutUs'])->name('frontend.about
 Route::get('/contact-us',[FrontController::class,'contactUs'])->name('frontend.contact-us');
 Route::post('/send-contact-email',[FrontController::class,'sendContactEmail'])->name('frontend.sendContactEmail');
 
+//Forgot Password Routes
+Route::get('/forgot-password',[AuthController::class,'forgotPassword'])->name('frontend.forgotPassword');
+Route::post('/process-forgot-password',[AuthController::class,'processForgotPassword'])->name('frontend.processForgotPassword');
+Route::get('/reset-password/{token}',[AuthController::class,'resetPassword'])->name('frontend.resetPassword');
+Route::post('/process-reset-password',[AuthController::class,'processResetPassword'])->name('frontend.processResetPassword');
+
 Route::get('/adoption/{categorySlug?}',[AdoptController::class,'index'])->name('frontend.adoption');
 Route::get('/pet/{slug}',[AdoptController::class,'pet'])->name('frontend.pet');
 Route::get('/verification',[AdoptController::class,'verify'])->name('frontend.verification');
