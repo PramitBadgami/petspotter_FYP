@@ -2,6 +2,7 @@
 
 use App\Mail\OrderEmail;
 use App\Mail\VerifyEmail;
+use App\Mail\DonationEmail;
 use App\Models\ProductCategory;
 use App\Models\PetCategory;
 use App\Models\ProductImage;
@@ -10,6 +11,7 @@ use App\Models\VerificationImage;
 use App\Models\Order;
 use App\Models\Country;
 use App\Models\Verification;
+use App\Models\Donation;
 use Illuminate\Support\Facades\Mail;
 
 function getCategories(){
@@ -79,5 +81,17 @@ function verifyEmail($verificationId) {
 
 function getCountryInfo($id){
     return Country::where('id',$id)->first();
+}
+
+function donationEmail($donationId)  {
+    $donation = Donation::where('id',$donationId)->first();
+
+    $mailData = [
+        'subject' => "Thank you for your donation",
+        'donation' => $donation,
+    ];
+
+    Mail::to($donation->email)->send(new DonationEmail($mailData));
+    // dd($donation);
 }
 ?>

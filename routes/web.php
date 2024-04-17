@@ -29,6 +29,7 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AdoptController;
 use App\Http\Controllers\AdoptionController;
+use App\Http\Controllers\DonationController;
 
 
 use Illuminate\Http\Request;
@@ -50,6 +51,10 @@ use Illuminate\Http\Request;
 
 // Route::get('/test', function () {
 //     verifyEmail(11);
+// });
+
+// Route::get('/test', function () {
+//     donationEmail(4);
 // });
 
 Route::get('/',[FrontController::class,'index'])->name('frontend.home');
@@ -86,6 +91,12 @@ Route::get('/greets',[CartController::class,'thankyou'])->name('frontend.greets'
 Route::get('/adopt/{slug}',[AdoptionController::class,'adopt'])->name('frontend.adopt');
 Route::post('/process-adopt',[AdoptionController::class,'processAdopt'])->name('frontend.processAdopt');
 Route::get('/success',[AdoptionController::class,'success'])->name('frontend.success');
+
+// Donation Route
+Route::get('/donations', [DonationController::class, 'index'])->name('frontend.donation');
+Route::post('/esewa', [DonationController::class, 'esewaPay'])->name('esewa');
+Route::get('/success', [DonationController::class, 'esewaPaySuccess']);
+Route::get('/failure', [DonationController::class, 'esewaPayFailure']);
 
 
 // Route::get('/register',[AuthController::class,'register'])->name('account.register');
@@ -237,6 +248,8 @@ Route::group(['prefix'=>'admin'],function(){
         Route::get('/adoptions/{id}', [AdoptionListController::class, 'detail'])->name('adoptions.detail');
         Route::post('/adoption/change-status/{id}', [AdoptionListController::class, 'changeAdoptionStatus'])->name('adoptions.changeAdoptionStatus');
 
+        Route::get('/donations', [DonationController::class, 'list'])->name('donations.list');
+
         // User Route
         Route::get('/users', [UserController::class, 'index'])->name('users.index');
 
@@ -249,6 +262,8 @@ Route::group(['prefix'=>'admin'],function(){
         Route::get('/change-password', [SettingController::class, 'showChangePasswordForm'])->name('admin.showChangePasswordForm');
         Route::post('/process-change-password', [SettingController::class, 'processChangePassword'])->name('admin.processChangePassword');
 
+        
+        
 
         //this route is returning the slug
         Route::get('/getSlug', function(Request $request){

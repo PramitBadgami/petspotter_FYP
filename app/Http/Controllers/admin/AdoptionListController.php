@@ -10,8 +10,6 @@ class AdoptionListController extends Controller
 {
     public function index(Request $request) {
 
-        // $search = $request->query('search');
-
         $adoptions = Adoption::with('user')
                             ->with('pet')->latest();
 
@@ -33,7 +31,6 @@ class AdoptionListController extends Controller
     }
 
     public function detail($adoptionId) {
-        // echo $adoptionId;
 
         $adoptions = Adoption::where('id',$adoptionId)->with('user')
                             ->with('pet')->first();

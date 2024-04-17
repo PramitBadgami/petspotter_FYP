@@ -1,6 +1,16 @@
 @extends('frontend.layouts.app')
 
 @section('content')
+<style>
+.rotate-90 {
+    transform: rotate(90deg);
+    position: fixed;
+    top: calc(50% - 24px); /* Adjust the top position as needed */
+    right: 1274px; /* Adjust the right position as needed */
+    z-index: 999; /* Ensure it's above other elements */
+}
+</style>
+
 <section class="section-1">
     <div id="carouselExampleIndicators" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="false">
         <div class="carousel-inner">
@@ -130,10 +140,13 @@
     </div>
 </section>
 
+<a href="{{ route('frontend.donation') }}" class="btn-dark btn btn-block w-24 rotate-90">Donate Now <i class='fas fa-paw'></i></a>
+
 <section class="section-4 pt-5">
     <div class="container">
         <div class="section-title">
             <h2>Featured Pets</h2>
+            
         </div>    
         <div class="row pb-3">
             @if ($featuredPets->isNotEmpty())
@@ -176,6 +189,7 @@
         </div>
     </div>
 </section>
+
 
 
 <section class="section-4 pt-5">

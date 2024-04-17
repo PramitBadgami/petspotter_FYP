@@ -61,16 +61,6 @@
                                               
                                 </div>
 
-                                <!-- <div class="col-md-12">
-                                    <div class="mb-3">
-                                        <select name="country" id="country" class="form-control">
-                                            <option value="">Select a Country</option>
-                                            <option value="1">India</option>
-                                            <option value="2">UK</option>
-                                        </select>
-                                    </div>            
-                                </div> -->
-
                                 <div class="col-md-12">
                                     <div class="mb-3">
                                         <label for="father">Father/Spouse <span class="required" style="color: red;">*</span></label>
@@ -86,12 +76,6 @@
                                         <p></p>
                                     </div>            
                                 </div>
-
-                                <!-- <div class="col-md-12">
-                                    <div class="mb-3">
-                                        <input type="text" name="appartment" id="appartment" class="form-control" placeholder="Apartment, suite, unit, etc. (optional)">
-                                    </div>            
-                                </div> -->
 
                                 <div class="col-md-4">
                                     <div class="mb-3">
@@ -133,13 +117,7 @@
                                         <p></p>
                                     </div>            
                                 </div>
-                                
 
-                                <!-- <div class="col-md-12">
-                                    <div class="mb-3">
-                                        <textarea name="order_notes" id="order_notes" cols="30" rows="2" placeholder="Order Notes (optional)" class="form-control"></textarea>
-                                    </div>            
-                                </div> -->
 
                             </div>
                         </div>
@@ -183,7 +161,7 @@
                 </div>
                 <div class="col-md-4">
                     <div class="sub-title">
-                        <h2>Verification Details</h3>
+                        <h2>Verification Details</h2>
                     </div>                    
                     
                         <div class="alert alert-primary" role="alert"  id="user-details">
@@ -202,10 +180,7 @@
                     
                                             
                     </div>
-
-                            
-                    <!-- CREDIT CARD FORM ENDS HERE -->
-                    
+               
                 </div>
             </div>
         </form>

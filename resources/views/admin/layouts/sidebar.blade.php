@@ -125,7 +125,7 @@
 								</a>
 							</li>
 							<li class="nav-item">
-								<a href="#" class="nav-link">
+								<a href="{{ route('donations.list') }}" class="nav-link">
 									<i style="margin-left: 4px;" class='fas fa-hand-holding-heart'></i>
 									<p style="margin-left: 6px;">Donation</p>
 								</a>
