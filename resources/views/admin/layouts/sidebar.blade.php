@@ -129,7 +129,13 @@
 									<i style="margin-left: 4px;" class='fas fa-hand-holding-heart'></i>
 									<p style="margin-left: 6px;">Donation</p>
 								</a>
-							</li>							
+							</li>		
+							<li class="nav-item">
+								<a href="{{ route('products.productRatings') }}" class="nav-link">
+									<i style="margin-left: 4px;" class='fas fa-star'></i>
+									<p style="margin-left: 6px;">Product Ratings</p>
+								</a>
+							</li>					
 						</ul>
 					</nav>
 					<!-- /.sidebar-menu -->

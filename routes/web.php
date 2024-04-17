@@ -73,6 +73,8 @@ Route::post('/send-contact-email',[FrontController::class,'sendContactEmail'])->
 Route::get('/forgot-password',[AuthController::class,'forgotPassword'])->name('frontend.forgotPassword');
 Route::post('/process-forgot-password',[AuthController::class,'processForgotPassword'])->name('frontend.processForgotPassword');
 Route::get('/reset-password/{token}',[AuthController::class,'resetPassword'])->name('frontend.resetPassword');
+Route::post('/save-rating/{productId}',[ShopController::class,'saveRating'])->name('frontend.saveRating');
+
 Route::post('/process-reset-password',[AuthController::class,'processResetPassword'])->name('frontend.processResetPassword');
 
 Route::get('/adoption/{categorySlug?}',[AdoptController::class,'index'])->name('frontend.adoption');
@@ -182,6 +184,8 @@ Route::group(['prefix'=>'admin'],function(){
         Route::put('/products/{product}', [ProductController::class, 'update'])->name('products.update');
         Route::delete('/products/{product}', [ProductController::class, 'destroy'])->name('products.delete');
         Route::get('/get-products',[ProductController::class,'getProducts'])->name('products.getProducts');
+        Route::get('/ratings', [ProductController::class, 'productRatings'])->name('products.productRatings');
+        Route::get('/change-rating-status', [ProductController::class, 'changeRatingStatus'])->name('products.changeRatingStatus');
 
         Route::get('/product-subcategories', [ProductSubCategoryController::class, 'index'])->name('product-subcategories.index');
 
