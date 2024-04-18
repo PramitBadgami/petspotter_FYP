@@ -149,8 +149,10 @@
                             <h2 class="h4 mb-3">Pet status</h2>
                             <div class="mb-3">
                                 <select name="status" id="status" class="form-control">
-                                    <option value="1">Active</option>
-                                    <option value="0">Block</option>
+                                <option value="1" {{ ($pet->status == 1) ? 'selected' : '' }}>Active</option>
+                                <option value="0" {{ ($pet->status == 0) ? 'selected' : '' }}>Block</option>
+                                    <!-- <option value="1">Active</option>
+                                    <option value="0">Block</option> -->
                                 </select>
                             </div>
                         </div>
@@ -178,7 +180,7 @@
                             <h2 class="h4 mb-3">Pet breed</h2>
                             <div class="mb-3">
                                 <select name="breed" id="breed" class="form-control">
-                                    <option value="">Select a brand</option>    
+                                    <option value="">Select a breed</option>    
                                     @if ($breeds->isNotEmpty())
                                         @foreach ($breeds as $breed)
                                         <option {{ ($pet->breed_id == $breed->id) ? 'selected' : '' }} value="{{ $breed->id }}">{{ $breed->breed }}</option>

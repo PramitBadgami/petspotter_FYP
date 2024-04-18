@@ -1,4 +1,4 @@
-@extends('admin.layouts.app')
+@extends('frontend.layouts.app')
 
 @section('content')
 <section class="content-header">					
@@ -8,7 +8,7 @@
                 <h1>Add Pet</h1>
             </div>
             <div class="col-sm-6 text-right">
-                <a href="{{ route('pets.index') }}" class="btn btn-primary">Back</a>
+                <a href="{{ route('frontend.home') }}" class="btn btn-primary">Back</a>
             </div>
         </div>
     </div>
@@ -19,6 +19,7 @@
     <!-- Default box -->
     <form action="" method="post" name="petForm" id="petForm">
         <div class="container-fluid">
+        @include('frontend.account.common.message')
             <div class="row">
                 <div class="col-md-8">
                     <div class="card mb-3">
@@ -40,14 +41,14 @@
                                 </div>
                                 <div class="col-md-12">
                                     <div class="mb-3">
-                                        <label for="description">Short Description</label>
-                                        <textarea name="short_description" id="short_description" cols="30" rows="10" class="summernote" placeholder=""></textarea>
+                                        <label for="description" class="form-label">Short Description</label>
+                                        <textarea name="short_description" id="short_description" class="form-control" rows="5" placeholder="Enter short description"></textarea>
                                     </div>
                                 </div> 
                                 <div class="col-md-12">
                                     <div class="mb-3">
-                                        <label for="description">Description</label>
-                                        <textarea name="description" id="description" cols="30" rows="10" class="summernote" placeholder="Description"></textarea>
+                                        <label for="description" class="form-label">Description</label>
+                                        <textarea name="description" id="description" class="form-control" rows="5" placeholder="Enter description"></textarea>
                                     </div>
                                 </div>                                            
                             </div>
@@ -67,55 +68,10 @@
 
                     </div>
                     
-                    <div class="card mb-3">
-                        <div class="card-body">
-                            <h2 class="h4 mb-3">Related Pets</h2>
-                            <div class="mb-3">
-                                <select multiple class="related_pet w-100" name="related_pets[]" id="related_pets">
-                                   
-                                </select>
-                                <p class="error"></p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card mb-3">
-                        <div class="card-body">
-                            <h2 class="h4 mb-3">Pet Details</h2>								
-                            <div class="row">
-                                <div class="col-md-6">
-                                <label for="gender">Gender</label>
-                                    <div class="mb-3">
-                                    <select name="gender" id="gender" class="form-control">
-                                        <option value="Male">Male</option>
-                                        <option value="Female">Female</option>                                                
-                                    </select>
-                                    <p class="error"></p>
-                                </div>
-                                </div>
-                                  
-                                <div class="col-md-12">
-                                    <label for="age">Age</label>
-                                    <div class="mb-3">
-                                        <input type="number" min="0" name="age" id="age" class="form-control" placeholder="Age">	
-                                        <p class="error"></p>
-                                    </div>
-                                </div>                                         
-                            </div>
-                        </div>	                                                                      
-                    </div>
+                    
+                    
                 </div>
                 <div class="col-md-4">
-                    <div class="card mb-3">
-                        <div class="card-body">	
-                            <h2 class="h4 mb-3">Pet status</h2>
-                            <div class="mb-3">
-                                <select name="status" id="status" class="form-control">
-                                    <option value="1">Active</option>
-                                    <option value="0">Block</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div> 
                     <div class="card">
                         <div class="card-body">	
                             <h2 class="h4  mb-3">Pet category</h2>
@@ -133,7 +89,7 @@
                                 <p class="error"></p>
                             </div>
                         </div>
-                    </div> 
+                    </div> <br>
                     <div class="card mb-3">
                         <div class="card-body">	
                             <h2 class="h4 mb-3">Pet breed</h2>
@@ -148,25 +104,38 @@
                                 </select>
                             </div>
                         </div>
-                    </div> 
+                    </div>    
                     <div class="card mb-3">
-                        <div class="card-body">	
-                            <h2 class="h4 mb-3">Featured pets</h2>
-                            <div class="mb-3">
-                                <select name="is_featured" id="is_featured" class="form-control">
-                                    <option value="No">No</option>
-                                    <option value="Yes">Yes</option>                                                
-                                </select>
-                                <p class="error"></p>
+                        <div class="card-body">
+                            <h2 class="h4 mb-3">Pet Details</h2>
+                            <div class="row">
+                                <div class="col-md-12">
+                                <label for="gender">Gender</label>
+                                    <div class="mb-3">
+                                    <select name="gender" id="gender" class="form-control">
+                                        <option value="Male">Male</option>
+                                        <option value="Female">Female</option>
+                                    </select>
+                                    <p class="error"></p>
+                                </div>
                             </div>
-                        </div>
-                    </div>                                 
+                                  
+                                <div class="col-md-12">
+                                    <label for="age">Age</label>
+                                    <div class="mb-3">
+                                        <input type="number" min="0" name="age" id="age" class="form-control" placeholder="Age">	
+                                        <p class="error"></p>
+                                    </div>
+                                </div>                                         
+                            </div>
+                        </div>	                                                                      
+                    </div>                             
                 </div>
             </div>
             
             <div class="pb-5 pt-3">
-                <button type="submit" class="btn btn-primary">Create</button>
-                <a href="{{ route('pets.index') }}" class="btn btn-outline-dark ml-3">Cancel</a>
+                <button type="submit" class="btn btn-primary" style= "padding-left: 25px; padding-right: 25px;"> Add </button>
+                <a href="{{ route('frontend.home') }}" class="btn btn-outline-dark ml-3">Cancel</a>
             </div>
         </div>
     </form>
@@ -174,29 +143,12 @@
     <!-- /.card -->
 </section>
 <!-- /.content -->
-
 @endsection
 
 @section('customJs')
 <script>
-//Recommendations
-    $('.related_pet').select2({
-        ajax: {
-            url: '{{ route("pets.getPets") }}',
-            dataType: 'json',
-            tags: true,
-            multiple: true,
-            minimumInputLength: 3,
-            processResults: function (data) {
-                return {
-                    results: data.tags
-                };
-            }
-        }
-    }); 
-
 //To select the slug as the name given to the sub category
-        $("#name").change(function(){
+    $("#name").change(function(){
             element = $(this);
             $("button[type=submit]").prop('disabled', true);
 
@@ -222,7 +174,7 @@
             $("button[type='submit']").prop('disabled',true);
 
             $.ajax({
-                url:'{{ route("pets.store") }}',
+                url:'{{ route("frontend.store") }}',
                 type: 'post',
                 data: formArray,
                 dataType: 'json',
@@ -233,7 +185,7 @@
                         $(".error").removeClass('invalid-feedback').html('');
                         $("input[type='text'], select, input[type='number']").removeClass('is-invalid');
 
-                        window.location.href="{{ route('pets.index') }}";
+                        window.location.href="{{ route('frontend.create') }}";
                     } else {
                         var errors = response['errors'];
 

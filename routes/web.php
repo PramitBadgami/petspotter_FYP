@@ -30,6 +30,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AdoptController;
 use App\Http\Controllers\AdoptionController;
 use App\Http\Controllers\DonationController;
+use App\Http\Controllers\AddController;
 
 
 use Illuminate\Http\Request;
@@ -74,6 +75,9 @@ Route::get('/about-us',[FrontController::class,'aboutUs'])->name('frontend.about
 Route::get('/contact-us',[FrontController::class,'contactUs'])->name('frontend.contact-us');
 Route::post('/send-contact-email',[FrontController::class,'sendContactEmail'])->name('frontend.sendContactEmail');
 
+Route::get('/pet/create',[AddController::class,'create'])->name('frontend.create');
+Route::post('/pets', [AddController::class, 'store'])->name('frontend.store');
+
 //Forgot Password Routes
 Route::get('/forgot-password',[AuthController::class,'forgotPassword'])->name('frontend.forgotPassword');
 Route::post('/process-forgot-password',[AuthController::class,'processForgotPassword'])->name('frontend.processForgotPassword');
@@ -90,7 +94,8 @@ Route::get('/greets',[CartController::class,'thankyou'])->name('frontend.greets'
 
 Route::get('/adopt/{slug}',[AdoptionController::class,'adopt'])->name('frontend.adopt');
 Route::post('/process-adopt',[AdoptionController::class,'processAdopt'])->name('frontend.processAdopt');
-Route::get('/success',[AdoptionController::class,'success'])->name('frontend.success');
+Route::get('/successes', [AdoptionController::class, 'success'])->name('frontend.success');
+
 
 // Donation Route
 Route::get('/donations', [DonationController::class, 'index'])->name('frontend.donation');

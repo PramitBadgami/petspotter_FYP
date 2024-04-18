@@ -98,12 +98,17 @@
 			</div>
 			<div class="col-lg-6 col-6 text-left  d-flex justify-content-end align-items-center">
 				@if (Auth::check())
-					
+					@if(Auth::user()->status == 'Verified')
+					<a href="{{ route('frontend.create') }}" class="btn-dark btn btn-block w-24" style= "border-radius: 10%;">Add Pets <i class='fas fa-paw'></i></a>
+					<a href="{{ route('account.profile') }}" class="nav-link text-dark">
+						<img src="{{ asset('front-assets/images/user2.jpg') }}" style="width: 35px; height: 35px; border-radius: 50%;">
+					</a>
+					@else
 					<a href="{{ route('account.profile') }}" class="nav-link text-dark">
 						<img src="{{ asset('front-assets/images/user1.jpg') }}" style="width: 35px; height: 35px; border-radius: 50%;">
 					</a>
 					
-					
+					@endif
 				@else
 				<a href="{{ route('account.login') }}" class="nav-link text-dark">Login/Register</a>
 				@endif
@@ -251,7 +256,7 @@
 					<h3>Important Links</h3>
 					<ul>
 						<li><a href="{{ route('frontend.about') }}" title="About">About</a></li>
-						<li><a href="contact-us.php" title="Contact Us">Contact Us</a></li>						
+						<li><a href="{{ route('frontend.contact-us') }}" title="Contact Us">Contact Us</a></li>						
 						<li><a href="https://vijayrajkhadka.com.np/" title="Privacy">Privacy</a></li>
 						<li><a href="#" title="Privacy">Terms & Conditions</a></li>
 						<li><a href="#" title="Privacy">Refund Policy</a></li>
@@ -263,12 +268,12 @@
 				<div class="footer-card">
 					<h3>My Account</h3>
 					<ul>
-						<li><a href="#" title="Sell">Login</a></li>
-						<li><a href="#" title="Advertise">Register</a></li>
-						<li><a href="#" title="Contact Us">My Orders</a></li>						
+						<li><a href="{{ route('account.login') }}" title="Sell">Login</a></li>
+						<li><a href="{{ route('account.register') }}" title="Advertise">Register</a></li>
+						<li><a href="#" title="Contact Us">My Orders</a></li>
 					</ul>
 				</div>
-			</div>			
+			</div>
 		</div>
 	</div>
 	<div class="copyright-area">

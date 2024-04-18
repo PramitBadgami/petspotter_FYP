@@ -27,7 +27,7 @@
 
 <section class="section-9 pt-4">
     <div class="container">
-        <form id="adoptForm" name="adoptForm" action="" method="post">
+        <form id="adoptForm" name="adoptForm" action="{{ route('frontend.processAdopt') }}" method="post">
         @csrf
         <input type="hidden" name="pet_id" value="{{ $pet->id }}">
             <div class="row">

@@ -19,4 +19,9 @@ class Pet extends Model
     {
         return $this->hasMany(Adoption::class);
     }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

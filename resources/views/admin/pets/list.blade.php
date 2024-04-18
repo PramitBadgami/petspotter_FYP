@@ -51,6 +51,7 @@
                                 <th>Age</th>
                                 <th>Gender</th>
                                 <th>Adoption Status</th>
+                                <th>Added by</th>
                                 <th>Status</th>
                                 <th>Action</th>
                             </tr>
@@ -82,6 +83,9 @@
                                         @else
                                             <span class="badge bg-success">Adopted</span>
                                         @endif
+                                    </td>
+                                    <td>
+                                        {{ $pet->user->name }}
                                     </td>
                                     <td>
                                         @if ($pet->status == 1)

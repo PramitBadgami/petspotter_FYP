@@ -17,7 +17,7 @@ use Intervention\Image\Drivers\Gd\Driver;
 class PetController extends Controller
 {
     public function index(Request $request) {
-        $pets = Pet::latest('id')->with('pet_images');
+        $pets = Pet::latest('id')->with('pet_images')->with('user');
 
         if($request->get('keyword') != "") {
             $pets = $pets->where('name','like','%'.$request->keyword.'%');
