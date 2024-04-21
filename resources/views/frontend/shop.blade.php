@@ -122,7 +122,7 @@
                         $productImage = $product->product_images->first();
                     @endphp
                     <div class="col-md-4">
-                        <div class="card product-card" style="height: 430px;">
+                        <div class="card product-card" style="height: 410px;">
                             <div class="product-image position-relative">
 
                                 <a href="{{ route("frontend.product",$product->slug) }}" class="product-img">

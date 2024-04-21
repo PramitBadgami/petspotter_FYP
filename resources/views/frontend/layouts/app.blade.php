@@ -80,7 +80,7 @@
 		}
 
 		.dropdown-menu .dropdown-item {
-			margin-bottom: 5px; /* Adjust margin as needed */
+			margin-bottom: 5px;
 		}
     </style>
 </head>
@@ -91,8 +91,7 @@
 		<div class="row align-items-center py-3 d-none d-lg-flex justify-content-between">
 			<div class="col-lg-4 logo">
 				<a href="{{ route('frontend.home') }}" class="text-decoration-none">
-					<!-- <span class="h1 text-uppercase text-primary bg-dark px-2">Online</span>
-					<span class="h1 text-uppercase text-dark bg-primary px-2 ml-n1">SHOP</span> -->
+					
                     <img class="logo" src="{{ asset('logo/petspotter-logo.png') }}">
 				</a>
 			</div>
@@ -129,48 +128,18 @@
 	<div class="container">
 		<nav class="navbar navbar-expand-xl" id="navbar">
 			<a href="{{ route('frontend.home') }}" class="text-decoration-none mobile-logo">
-				<!-- <span class="h2 text-uppercase text-primary bg-dark">Online</span>
-				<span class="h2 text-uppercase text-white px-2">SHOP</span> -->
+				
 				<img class="logo" src="{{ asset('logo/petspotter-logo.png') }}" style="width: 50%; margin-top: -10px;">
 			</a>
 			<button class="navbar-toggler menu-btn" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      			<!-- <span class="navbar-toggler-icon icon-menu"></span> -->
+      			
 				  <i class="navbar-toggler-icon fas fa-bars"></i>
 			</button>
 			
 						
 					
     		<div class="collapse navbar-collapse" id="navbarSupportedContent">
-				<!-- <button class="btn btn-dark dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-							Pet Products
-						</button>
-						<ul class="dropdown-menu dropdown-menu-dark">
-							@if(getCategories()->isNotEmpty())
-							@foreach (getCategories() as $category)
-								<li><a class="dropdown-item" href="#">{{ $category->name }}</a></li>
-									
-								
-							@endforeach
-                    		@endif
-						</ul> -->
-
-						<!-- <button class="btn btn-dark dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">Pet Products</button>
-						<ul class="dropdown-menu dropdown-menu-dark" id="categoryDropdown">
-							@if(getCategories()->isNotEmpty())
-								@foreach (getCategories() as $category)
-									<li>
-										<a class="dropdown-item category-item" href="#" data-category-id="{{ $category->id }}">{{ $category->name }}</a>
-										<ul class="subcategories" id="subcategories_{{ $category->id }}">
-										@foreach ($category->sub_category as $subCategory)
-
-											<li><a class="dropdown-item nav-link" href="{{ route('frontend.shop',[$category->slug,$subCategory->slug]) }}">{{ $subCategory->name }}</a></li>
-										@endforeach
-
-										</ul>
-									</li>
-								@endforeach
-							@endif
-						</ul> -->
+				
 
 						
 
@@ -257,9 +226,9 @@
 					<ul>
 						<li><a href="{{ route('frontend.about') }}" title="About">About</a></li>
 						<li><a href="{{ route('frontend.contact-us') }}" title="Contact Us">Contact Us</a></li>						
-						<li><a href="https://vijayrajkhadka.com.np/" title="Privacy">Privacy</a></li>
-						<li><a href="#" title="Privacy">Terms & Conditions</a></li>
-						<li><a href="#" title="Privacy">Refund Policy</a></li>
+						<li><a href="{{ route('frontend.privacy') }}" title="Privacy">Privacy Policy</a></li>
+						<li><a href="{{ route('frontend.term') }}" title="Privacy">Terms & Conditions</a></li>
+						<li><a href="{{ route('frontend.blog') }}" title="Blog">Blog</a></li>
 					</ul>
 				</div>
 			</div>
@@ -270,7 +239,7 @@
 					<ul>
 						<li><a href="{{ route('account.login') }}" title="Sell">Login</a></li>
 						<li><a href="{{ route('account.register') }}" title="Advertise">Register</a></li>
-						<li><a href="#" title="Contact Us">My Orders</a></li>
+						<li><a href="{{ route('account.orders') }}" title="Contact Us">My Orders</a></li>
 					</ul>
 				</div>
 			</div>

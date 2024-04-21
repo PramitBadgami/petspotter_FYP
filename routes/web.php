@@ -72,6 +72,9 @@ Route::post('/get-order-summary',[CartController::class,'getOrderSummary'])->nam
 Route::post('/add-to-wishlist',[FrontController::class,'addToWishlist'])->name('frontend.addToWishlist');
 Route::post('/add-to-favouritelist',[FrontController::class,'addToFavouritelist'])->name('frontend.addToFavouritelist');
 Route::get('/about-us',[FrontController::class,'aboutUs'])->name('frontend.about');
+Route::get('/blog',[FrontController::class,'blog'])->name('frontend.blog');
+Route::get('/privacy-policy',[FrontController::class,'privacy'])->name('frontend.privacy');
+Route::get('/terms-and-conditions',[FrontController::class,'term'])->name('frontend.term');
 Route::get('/contact-us',[FrontController::class,'contactUs'])->name('frontend.contact-us');
 Route::post('/send-contact-email',[FrontController::class,'sendContactEmail'])->name('frontend.sendContactEmail');
 
@@ -90,7 +93,7 @@ Route::get('/adoption/{categorySlug?}',[AdoptController::class,'index'])->name('
 Route::get('/pet/{slug}',[AdoptController::class,'pet'])->name('frontend.pet');
 Route::get('/verification',[AdoptController::class,'verify'])->name('frontend.verification');
 Route::post('/process-verification',[AdoptController::class,'processVerify'])->name('frontend.processVerify');
-Route::get('/greets',[CartController::class,'thankyou'])->name('frontend.greets');
+Route::get('/greets',[AdoptController::class,'greet'])->name('frontend.greets');
 
 Route::get('/adopt/{slug}',[AdoptionController::class,'adopt'])->name('frontend.adopt');
 Route::post('/process-adopt',[AdoptionController::class,'processAdopt'])->name('frontend.processAdopt');

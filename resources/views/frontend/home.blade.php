@@ -145,7 +145,7 @@
                 <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
                     <div class="p-3">
                         <h1 class="display-4 text-white mb-3">Adopt Pets</h1>
-                        <p class="mx-md-5 px-5">Lorem rebum magna amet lorem magna erat diam stet. Sadips duo stet amet amet ndiam elitr ipsum diam</p>
+                        <p class="mx-md-5 px-5">Welcome to our adoption center! Find your perfect furry companion today and experience the joy of welcoming a new member into your family.</p>
                         <a class="btn btn-outline-light py-2 px-4 mt-3" href="{{ route('frontend.adoption') }}">Adopt Now</a>
                     </div>
                 </div>
@@ -163,7 +163,7 @@
                 <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
                     <div class="p-3">
                         <h1 class="display-4 text-white mb-3">Dog Products</h1>
-                        <p class="mx-md-5 px-5">Lorem rebum magna amet lorem magna erat diam stet. Sadips duo stet amet amet ndiam elitr ipsum diam</p>
+                        <p class="mx-md-5 px-5">Explore our exclusive range of dog products designed to keep your canine companion happy, healthy, and tail-waggingly satisfied.</p>
                         <a class="btn btn-outline-light py-2 px-4 mt-3" href="http://127.0.0.1:8000/shop/dog-products">Shop Now</a>
                     </div>
                 </div>
@@ -180,7 +180,7 @@
                 <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
                     <div class="p-3">
                         <h1 class="display-4 text-white mb-3">Cat Products</h1>
-                        <p class="mx-md-5 px-5">Lorem rebum magna amet lorem magna erat diam stet. Sadips duo stet amet amet ndiam elitr ipsum diam</p>
+                        <p class="mx-md-5 px-5">Discover purrfect products for your feline friend, ensuring they stay entertained, cozy, and contented all day long.</p>
                         <a class="btn btn-outline-light py-2 px-4 mt-3" href="http://127.0.0.1:8000/shop/cat-products">Shop Now</a>
                     </div>
                 </div>

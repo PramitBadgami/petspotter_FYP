@@ -18,22 +18,27 @@
                 <form action="" method="post" name="registrationForm" id="registrationForm">
                     <h4 class="modal-title">Register Now</h4>
                     <div class="form-group">
+                        <label class="mb-2" for="name">Name</label>
                         <input type="text" class="form-control" placeholder="Name" id="name" name="name">
                         <p></p>
                     </div>
                     <div class="form-group">
+                        <label class="mb-2" for="name">Email</label>
                         <input type="text" class="form-control" placeholder="Email" id="email" name="email">
                         <p></p>
                     </div>
                     <div class="form-group">
+                        <label class="mb-2" for="name">Phone</label>
                         <input type="text" class="form-control" placeholder="Phone" id="phone" name="phone">
                         <p></p>
                     </div>
                     <div class="form-group">
+                        <label class="mb-2" for="name">Password</label>
                         <input type="password" class="form-control" placeholder="Password" id="password" name="password">
                         <p></p>
                     </div>
                     <div class="form-group">
+                        <label class="mb-2" for="name">Confirm Password</label>
                         <input type="password" class="form-control" placeholder="Confirm Password" id="password_confirmation" name="password_confirmation">
                         <p></p>
                     </div>

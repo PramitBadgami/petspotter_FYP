@@ -7,9 +7,9 @@
             <div class="col-sm-6">
                 <h1>Add Pet</h1>
             </div>
-            <div class="col-sm-6 text-right">
+            <!-- <div class="col-sm-6 text-right">
                 <a href="{{ route('frontend.home') }}" class="btn btn-primary">Back</a>
-            </div>
+            </div> -->
         </div>
     </div>
     <!-- /.container-fluid -->
@@ -34,8 +34,8 @@
                                 </div>
                                 <div class="col-md-12">
                                     <div class="mb-3">
-                                        <label for="title">Slug</label>
-                                        <input type="text" readonly name="slug" id="slug" class="form-control" placeholder="Slug">	
+                                        <!-- <label for="title">Slug</label> -->
+                                        <input type="hidden" readonly name="slug" id="slug" class="form-control" placeholder="Slug">	
                                         <p class="error"></p>
                                     </div>
                                 </div>

@@ -135,6 +135,18 @@ class FrontController extends Controller
         return view('frontend.about');
     }
 
+    public function blog(){
+        return view('frontend.blog');
+    }
+
+    public function privacy(){
+        return view('frontend.privacy');
+    }
+
+    public function term(){
+        return view('frontend.term');
+    }
+
     public function contactUs(){
         return view('frontend.contact-us');
     }

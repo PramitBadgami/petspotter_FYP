@@ -59,8 +59,14 @@ class DonationController extends Controller
             'updated_at' => Carbon::now(),
         ]);
 
-        // Sending donation email
-        donationEmail($donation->id);
+        // Check if the update was successful and the email hasn't been sent yet
+        if ($update_status && $donation->email_sent != 1) {
+            // Sending donation email
+            donationEmail($donation->id);
+
+            // Marking the email as sent to avoid duplicate sends
+            $donation->update(['email_sent' => 1]);
+        }
 
         if($update_status){
             $msg='Successful';

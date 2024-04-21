@@ -149,7 +149,7 @@
                                             <br>Drop files here or click to upload.<br><br>                                            
                                         </div>
                                     </div>
-                                </div>	                                                                      
+                                </div>                                                                
                             </div>
                             <div class="row" id="document-gallery">
 
@@ -328,7 +328,7 @@
                             .html("");
                         }
                     } else{
-                        window.location.href = '{{ route("frontend.adoption") }}';
+                        window.location.href = '{{ route("frontend.greets") }}';
                     }
                 }
             });

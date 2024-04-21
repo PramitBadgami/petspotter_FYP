@@ -75,8 +75,7 @@ class AuthController extends Controller
                     
                     // Get the intended URL
                     $intendedUrl = session()->get('url.intended');
-                    // Clear the intended URL from session
-                    session()->forget('url.intended');
+                    
                     // Redirect to the intended URL
                     return redirect($intendedUrl);
                 }

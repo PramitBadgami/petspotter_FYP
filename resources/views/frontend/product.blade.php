@@ -20,15 +20,15 @@
             <div class="col-md-5 left">
                 <div id="product-carousel" class="carousel slide" data-bs-ride="carousel">
                     <div class="carousel-inner bg-light">
-                        
                         @if ($product->product_images)
                             @foreach ($product->product_images as $key => $productImage)
-                            <div class="carousel-item {{ ($key == 0) ? 'active' : '' }}">
-                                <img class="w-100 h-90" src="{{ asset('uploads/product/large/'.$productImage->image) }}" alt="Image">
-                            </div>
+                                <div class="carousel-item {{ ($key == 0) ? 'active' : '' }}">
+                                    <div class="d-flex justify-content-center align-items-center" style="width: 100%; height: 300px; overflow: hidden;">
+                                        <img style="width: auto; height: auto; max-width: 100%; max-height: 100%; object-fit: contain;" src="{{ asset('uploads/product/large/'.$productImage->image) }}" alt="Image">
+                                    </div>
+                                </div>
                             @endforeach
                         @endif
-
                     </div>
                     <a class="carousel-control-prev" href="#product-carousel" data-bs-slide="prev">
                         <i class="fa fa-2x fa-angle-left text-dark"></i>

@@ -210,12 +210,6 @@ class AdoptController extends Controller
                 $image->scale(1400, 1200);
                 $image->save($destPath);
 
-                // //Small Image
-                // $destPath = public_path().'/uploads/product/small/'.$imageName;
-                // $manager = new ImageManager(Driver::class);
-                // $image = $manager->read($sourcePath);
-                // $image->scale(300,300);
-                // $image->save($destPath);
             }
         }
 
@@ -227,11 +221,10 @@ class AdoptController extends Controller
             'verifyId' => $verify->id,
             'message' => 'Verification form saved successfully',
         ]);
-
     }
 
 
-    public function thankyou() {
+    public function greet() {
         return view('frontend.greets');
     }
 }
