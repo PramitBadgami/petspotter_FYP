@@ -9,6 +9,125 @@
     right: 1274px; /* Adjust the right position as needed */
     z-index: 999; /* Ensure it's above other elements */
 }
+
+.ban_sec {
+  width: 100%;
+}
+.ban_img {
+  width: 100%;
+  position: relative;
+}
+.ban_img img {
+  width: 100%;
+}
+.ban_text {
+  position: absolute;
+  top: 50%;
+  left: 6%;
+  -ms-transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+  -o-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+.ban_text strong {
+  font: 800 62.22px/70px "Montserrat", sans-serif;
+  color: #fff;
+  text-transform: uppercase;
+}
+.ban_text strong span {
+  font: 400 44.44px/52px "Montserrat", sans-serif;
+  letter-spacing: 3px;
+}
+.ban_text p {
+  font: 400 25px/30px "Montserrat", sans-serif;
+  color: #fff;
+  margin: 7px 0 25px;
+}
+.ban_text a {
+  display: inline-block;
+  font: 800 19.39px/24px "Montserrat", sans-serif;
+  background: #282828;
+  border-radius: 26px;
+  color: #fff;
+  padding: 12px 28px;
+  -moz-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  -webkit-transition: all 0.3s ease-in-out;
+  -ms-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  text-decoration:none;
+}
+.ban_text a:hover {
+  background: #F7CA0D;
+}
+
+@media (min-width: 1200px) and (max-width: 1399px) {
+  .ban_text p {
+    font-size: 21px;
+  }
+}
+
+@media (min-width: 992px) and (max-width: 1199px) {
+  .ban_text p {
+    font-size: 17px;
+  }
+  .ban_text strong {
+    font-size: 50px;
+    line-height: 60px;
+  }
+  .ban_text strong span {
+    font-size: 37px;
+  }
+  .ban_text a {
+    font-size: 16px;
+    line-height: 19px;
+  }
+}
+
+@media only screen and (max-width: 991px) {
+  .ban_text strong {
+    font-size: 35px;
+    line-height: 40px;
+  }
+  .ban_text strong span {
+    font-size: 28px;
+    line-height: 35px;
+    letter-spacing: 2px;
+  }
+  .ban_text p {
+    font-size: 14px;
+    line-height: 20px;
+  }
+  .ban_text a {
+    font-size: 13.39px;
+    line-height: 15px;
+  }
+}
+@media only screen and (max-width: 767px) {
+  .ban_img img {
+    min-height: 290px;
+    object-fit: cover;
+  }
+}
+@media only screen and (max-width: 575px) {
+  .ban_text strong {
+    background: rgba(0, 0, 0, 0.8);
+    padding: 10px;
+    width: 100%;
+    display: block;
+  }
+}
+@media only screen and (max-width: 480px) {
+  .ban_text strong span {
+    font-size: 22px;
+    line-height: 31px;
+    letter-spacing: 1px;
+  }
+  .ban_text {
+    left: 2%;
+  }
+}
 </style>
 
 <section class="section-1">
@@ -234,8 +353,23 @@
         @endif
         </div>
     </div>
+    
 </section>
 
+<section class="ban_sec">
+    <div class="container">
+        <div class="ban_img">
+            <img src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/0a1181f6-133f-416f-813a-4fa3ce6d7bd6/dgf5tih-dfac5edb-f0b5-4724-8986-5f65cdad433f.png/v1/fill/w_1280,h_431,q_80,strp/animals_pet_dog_banner_panorama_by_viaankart_dgf5tih-fullview.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcLzBhMTE4MWY2LTEzM2YtNDE2Zi04MTNhLTRmYTNjZTZkN2JkNlwvZGdmNXRpaC1kZmFjNWVkYi1mMGI1LTQ3MjQtODk4Ni01ZjY1Y2RhZDQzM2YucG5nIiwiaGVpZ2h0IjoiPD00MzEiLCJ3aWR0aCI6Ijw9MTI4MCJ9XV0sImF1ZCI6WyJ1cm46c2VydmljZTppbWFnZS53YXRlcm1hcmsiXSwid21rIjp7InBhdGgiOiJcL3dtXC8wYTExODFmNi0xMzNmLTQxNmYtODEzYS00ZmEzY2U2ZDdiZDZcL3ZpYWFua2FydC00LnBuZyIsIm9wYWNpdHkiOjk1LCJwcm9wb3J0aW9ucyI6MC40NSwiZ3Jhdml0eSI6ImNlbnRlciJ9fQ.UmE_Jx6k7F1zw-tlc057l3KgIwk17BFgmo2PSMjk8aU" alt="banner" border="0">
+            <div class="ban_text">
+                <strong>
+                    <span>Meeting current</span><br> needs now
+                </strong>
+                <p>You can prioritize a pet's well-being, ensuring they receive the necessary support for their mental, emotional, behavioral, and physical health.</p>
+                <a href="{{ route('frontend.donation') }}">Donate Now</a>
+            </div>
+        </div>
+    </div>
+</section>
 
 <section class="section-4 pt-5">
     <div class="container">

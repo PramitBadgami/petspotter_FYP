@@ -9,7 +9,7 @@ use App\Models\User;
 class UserController extends Controller
 {
     public function index(Request $request) {
-        $users = User::latest();
+        $users = User::where('role','1')->latest();
 
         if (!empty($request->get('keyword'))) {
             $users = $users->where('name','like','%'.$request->get('keyword').'%');

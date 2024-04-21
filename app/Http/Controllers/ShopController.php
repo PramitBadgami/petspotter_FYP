@@ -54,6 +54,9 @@ class ShopController extends Controller
 
         }
 
+        if(!empty($request->get('search'))) {
+            $products = $products->where('title','like','%'.$request->get('search').'%');
+        }
 
         if ($request->get('sort') != '') {
             if($request->get('sort') == 'latest') {
@@ -67,6 +70,7 @@ class ShopController extends Controller
             $products = $products->orderBy('id','DESC');
         }
 
+        
         
         $products = $products->paginate(6);
 

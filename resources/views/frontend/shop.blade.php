@@ -90,10 +90,23 @@
                 </div>
             </div>
             <div class="col-md-9">
+                
                 <div class="row pb-3">
-                    <div class="col-12 pb-1">
-                        <div class="d-flex align-items-center justify-content-end mb-4">
+                    
+                    <div class="col-12 pb-1 d-flex gap-5">
+                        <form action="{{ route('frontend.shop') }}" method="get" style= "width: 80%; height: 8%;">
+                        <div class="input-group" style= "width: 80%; height: 8%;">
+                            <input value="{{ Request::get('search') }}" type="text" placeholder="Search For Products" class="form-control" name="search" id="search">
+                            <button type="submit" class="input-group-text">
+                                <i class="fa fa-search"></i>
+                            </button>
+                        </div>
+                        </form>
+                        
+                        <div class="d-flex align-items-center justify-content-end mb-4 ml-4">
+                            
                             <div class="ml-2">
+
                                 <select name="sort" id="sort" class="form-control">
                                     <option value="latest" {{ ($sort == 'latest') ? 'selected' : '' }}>Latest</option>
                                     <option value="price_desc" {{ ($sort == 'price_desc') ? 'selected' : '' }}>Price High</option>
@@ -220,7 +233,11 @@
         // Price Range Filter
         url += '&price_min=' +slider.result.from+'&price_max=' +slider.result.to;
 
-        
+        var keyword = $("#search").val();
+
+        if (keyword.length > 0) {
+            url += '&search=' + keyword;
+        }
 
         // Sortings Filter
         url += '&sort=' + $("#sort").val();

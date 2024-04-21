@@ -49,9 +49,9 @@
                                         @endphp
                                     <a href="{{ route('frontend.pet',$favouritelist->pet->slug) }}" class="product-img">
                                         @if (!empty($petImage))
-                                            <img class="card-img-top" src="{{ asset('uploads/pet/small/'.$petImage->image) }}" style="object-fit: contain; object-position: center; width: 100%; height: 260px;" >
+                                            <img class="card-img-top" src="{{ asset('uploads/pet/small/'.$petImage->image) }}" style="object-fit: cover; object-position: center; width: 100%; height: 260px;" >
                                         @else
-                                            <img class="card-img-top" src="{{ asset('admin-assets/img/default-150x150.png') }}" style="object-fit: contain; object-position: center; width: 100%; height: 260px; padding: 5px;">
+                                            <img class="card-img-top" src="{{ asset('admin-assets/img/default-150x150.png') }}" style="object-fit: cover; object-position: center; width: 100%; height: 260px; padding: 5px;">
                                         @endif
                                     </a>
                                     <!-- <a title="Add to favourites list" class="whishlist" href="222"><i class="far fa-heart"></i></a>                             -->

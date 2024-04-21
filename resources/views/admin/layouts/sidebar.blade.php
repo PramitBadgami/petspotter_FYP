@@ -1,20 +1,23 @@
 <style>
-.sub-links {
-    display: none;
-	text-decoration: none;
-	margin-bottom: 10px;
-	padding-top: 10px;
-	height: 10%;
-	
-}
+	.sub-links {
+		display: none;
+		text-decoration: none;
+		margin-bottom: 10px;
+		padding-top: 10px;
+		height: 10%;
+		
+	}
 
-.sub-links li:first-child {
-	margin-bottom: 10px;
-}
+	.sub-links a{
+		height: 90%;
+	}
 
-.sub-links li:hover {
-        /* Hover effect for all links */
-        background-color: #f0f0f0;
+	.sub-links li:first-child {
+		margin-bottom: 10px;
+	}
+
+	.sub-links li:hover {
+        background-color: #494E53;
         cursor: pointer;
     }
 
@@ -142,7 +145,6 @@
 				</div>
 				<!-- /.sidebar -->
          	</aside>
-
 
 
 
